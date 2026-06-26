@@ -1,0 +1,14 @@
+{
+  "name": "맞팔체커",
+  "short_name": "맞팔체커",
+  "description": "Instagram 데이터 ZIP을 브라우저에서만 분석하는 맞팔 확인·정리 도구",
+  "start_url": "./?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f8fc",
+  "theme_color": "#6557ff",
+  "lang": "ko",
+  "icons": [
+    {"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}

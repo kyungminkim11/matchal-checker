@@ -1,5 +1,8 @@
 (()=>{
   const q=(s,r=document)=>r.querySelector(s);
+  const NOTES_KEY='unfollow_notes_v10';
+  const MISSING_KEY='unfollow_missing_v10';
+
   const start=()=>{
     const focus=q('.focusPanel');
     if(focus&&!focus.querySelector('.shortcutGuide')){
@@ -24,6 +27,51 @@
       copy.textContent='아이디 복사';
       copy.addEventListener('click',copyUsername);
       actions.appendChild(copy);
+    }
+
+    if(focus&&!q('#focusLocalTools')){
+      const tools=document.createElement('div');
+      tools.id='focusLocalTools';
+      tools.className='focusLocalTools';
+
+      const label=document.createElement('label');
+      label.setAttribute('for','accountMemo');
+      label.textContent='이 계정 메모';
+
+      const memo=document.createElement('textarea');
+      memo.id='accountMemo';
+      memo.rows=3;
+      memo.placeholder='예: 지인, 작업 계정, 나중에 다시 확인';
+      memo.addEventListener('input',()=>{
+        const value=username();
+        if(!value) return;
+        const notes=readJson(NOTES_KEY,{});
+        if(memo.value.trim()) notes[value]=memo.value;
+        else delete notes[value];
+        localStorage.setItem(NOTES_KEY,JSON.stringify(notes));
+      });
+
+      const row=document.createElement('div');
+      row.className='focusLocalRow';
+      const missing=document.createElement('button');
+      missing.id='markMissingBtn';
+      missing.type='button';
+      missing.className='btn ghost';
+      missing.textContent='프로필을 찾을 수 없음';
+      missing.addEventListener('click',markMissing);
+      const state=document.createElement('small');
+      state.id='localAccountState';
+      state.setAttribute('aria-live','polite');
+      row.append(missing,state);
+      tools.append(label,memo,row);
+      focus.appendChild(tools);
+      syncLocalTools();
+
+      let syncTimer;
+      new MutationObserver(()=>{
+        clearTimeout(syncTimer);
+        syncTimer=setTimeout(syncLocalTools,80);
+      }).observe(focus,{subtree:true,childList:true,characterData:true,attributes:true});
     }
 
     document.addEventListener('keydown',event=>{
@@ -65,6 +113,42 @@
       if(match) return match[1];
     }
     return '';
+  }
+
+  function readJson(key,fallback){
+    try{return JSON.parse(localStorage.getItem(key)||'')||fallback;}catch{return fallback;}
+  }
+
+  function syncLocalTools(){
+    const value=username();
+    const memo=q('#accountMemo');
+    const state=q('#localAccountState');
+    const missing=q('#markMissingBtn');
+    if(!memo||!state||!missing) return;
+    const notes=readJson(NOTES_KEY,{});
+    const missingList=readJson(MISSING_KEY,[]);
+    if(document.activeElement!==memo) memo.value=value?notes[value]||'':'';
+    const marked=value&&missingList.includes(value);
+    missing.classList.toggle('active',Boolean(marked));
+    missing.textContent=marked?'프로필 없음 기록 취소':'프로필을 찾을 수 없음';
+    state.textContent=value?(marked?'프로필 없음으로 로컬 기록됨':notes[value]?'메모가 저장되어 있습니다':'브라우저에 자동 저장됩니다'):'';
+  }
+
+  function markMissing(){
+    const value=username();
+    if(!value){toast('현재 계정의 아이디를 찾지 못했습니다.');return;}
+    const list=readJson(MISSING_KEY,[]);
+    const index=list.indexOf(value);
+    if(index>=0){
+      list.splice(index,1);
+      toast(`@${value} 프로필 없음 기록을 취소했습니다.`);
+    }else{
+      list.push(value);
+      toast(`@${value} 프로필 없음으로 기록했습니다.`);
+      setTimeout(()=>q('#focusLaterBtn')?.click(),250);
+    }
+    localStorage.setItem(MISSING_KEY,JSON.stringify(list));
+    syncLocalTools();
   }
 
   async function copyUsername(){

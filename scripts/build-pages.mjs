@@ -58,6 +58,8 @@ html = html.replace(/<head([^>]*)>/i, `<head$1>${headAdditions}`);
 
 const bodyAdditions = `
 <script src="/assets/product-improvements.js?v=10.0" defer></script>
+<script src="/assets/work-mode-enhancements.js?v=10.0" defer></script>
+<script src="/assets/pwa-enhancements.js?v=10.0" defer></script>
 <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>`;
 html = html.replace(/<\/body>/i, `${bodyAdditions}</body>`);
 
@@ -73,5 +75,9 @@ for (const file of ['CNAME', 'robots.txt', 'sitemap.xml', 'manifest.webmanifest'
 fs.cpSync(path.join(root, 'assets'), path.join(dist, 'assets'), { recursive: true });
 fs.writeFileSync(path.join(dist, '404.html'), '<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=/"><script>location.replace("/")</script>');
 fs.writeFileSync(path.join(dist, '.nojekyll'), '');
+
+if (!/<title>인스타 맞팔 확인/.test(html)) throw new Error('SEO title injection failed');
+if (html.includes('/matchal-checker/')) throw new Error('Legacy path remains in generated HTML');
+if (!html.includes('product-improvements.js')) throw new Error('Product enhancement injection failed');
 
 console.log(`Built ${path.relative(root, dist)} with ${html.length.toLocaleString()} characters.`);

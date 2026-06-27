@@ -39,10 +39,14 @@ jobs:
           test -f dist/assets/work-mode-enhancements.css
           test -f dist/assets/business-info.css
           test -f dist/assets/business-info.js
+          test -f dist/assets/ux-v11.css
+          test -f dist/assets/ux-v11.js
           grep -q "인스타 맞팔 확인" dist/index.html
           grep -q "unfollow.lavalabs.co.kr" dist/index.html
           grep -q "455-23-01867" dist/index.html
           grep -q "business-info.js" dist/index.html
+          grep -q "ux-v11.css" dist/assets/local-icons.css
+          grep -q "ux-v11.js" dist/assets/business-info.js
           ! grep -R "kyungminkim11/matchal-checker" dist
           ! grep -R "code.iconify.design" dist
       - name: Configure Pages

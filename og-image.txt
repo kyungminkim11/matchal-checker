@@ -1,0 +1,1 @@
+Social sharing image placeholder. The production build expects og-image.png at the repository root.

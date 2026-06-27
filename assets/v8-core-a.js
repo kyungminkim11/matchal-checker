@@ -11,6 +11,6 @@
     nav.querySelector('[data-v8="clear"]')?.addEventListener('click',()=>document.getElementById('sideClearBtn')?.click());
   }
   const main=document.querySelector('.main');
-  if(main&&!main.querySelector('.serviceTopbar')) main.prepend(make('header','serviceTopbar','<p>안녕하세요. 오늘도 필요한 계정만 차분하게 정리해보세요.</p><div class="serviceTopActions"><a href="https://github.com/kyungminkim11/matchal-checker/issues/new" target="_blank" rel="noopener"><span class="iconify" data-icon="ph:chat-circle-text"></span>피드백 보내기</a><button class="themeV8" aria-label="테마 변경"><span class="iconify" data-icon="ph:moon"></span></button></div>'));
+  if(main&&!main.querySelector('.serviceTopbar')) main.prepend(make('header','serviceTopbar','<p>안녕하세요. 오늘도 필요한 계정만 차분하게 정리해보세요.</p><div class="serviceTopActions"><a href="https://github.com/kyungminkim11/unfollow/issues/new" target="_blank" rel="noopener"><span class="iconify" data-icon="ph:chat-circle-text"></span>피드백 보내기</a><button class="themeV8" aria-label="테마 변경"><span class="iconify" data-icon="ph:moon"></span></button></div>'));
   document.querySelector('.serviceTopbar')?.setAttribute('id','top');
 })();

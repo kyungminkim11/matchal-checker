@@ -1,0 +1,100 @@
+(()=>{
+  const q=(s,r=document)=>r.querySelector(s);
+  const start=()=>{
+    const focus=q('.focusPanel');
+    if(focus&&!focus.querySelector('.shortcutGuide')){
+      const guide=document.createElement('div');
+      guide.className='shortcutGuide';
+      [['D','취소 완료'],['K','유지'],['L','나중에'],['C','아이디 복사']].forEach(([key,label])=>{
+        const item=document.createElement('span');
+        const kbd=document.createElement('kbd');
+        kbd.textContent=key;
+        item.append(kbd,document.createTextNode(` ${label}`));
+        guide.appendChild(item);
+      });
+      focus.appendChild(guide);
+    }
+
+    const actions=q('.focusActions');
+    if(actions&&!q('#copyUsernameBtn')){
+      const copy=document.createElement('button');
+      copy.id='copyUsernameBtn';
+      copy.type='button';
+      copy.className='btn ghost';
+      copy.textContent='아이디 복사';
+      copy.addEventListener('click',copyUsername);
+      actions.appendChild(copy);
+    }
+
+    document.addEventListener('keydown',event=>{
+      if(event.metaKey||event.ctrlKey||event.altKey||typing(event.target)) return;
+      const key=event.key.toLowerCase();
+      const selectors={d:'#focusDoneBtn',k:'#focusKeepBtn',l:'#focusLaterBtn'};
+      if(selectors[key]&&q(selectors[key])){
+        event.preventDefault();
+        q(selectors[key]).click();
+      }
+      if(key==='c'){
+        event.preventDefault();
+        copyUsername();
+      }
+    });
+
+    document.querySelectorAll('.returnSheetV8').forEach(dialog=>{
+      dialog.setAttribute('role','dialog');
+      dialog.setAttribute('aria-modal','true');
+      dialog.setAttribute('aria-label','Instagram 처리 결과 선택');
+    });
+
+    document.querySelectorAll('button').forEach(button=>{
+      if(!button.getAttribute('aria-label')&&!button.textContent.trim()) button.setAttribute('aria-label','버튼');
+    });
+  };
+
+  const typing=target=>target&&target.matches&&target.matches('input,textarea,select,[contenteditable="true"]');
+
+  function username(){
+    const link=q('.focusPanel a[href*="instagram.com"],a[data-action="open"][href*="instagram.com"]');
+    if(link){
+      try{return new URL(link.href).pathname.split('/').filter(Boolean)[0]||'';}catch{}
+    }
+    const candidates=document.querySelectorAll('.focusPanel [data-username],.focusPanel .username,.focusPanel strong');
+    for(const el of candidates){
+      const raw=el.dataset.username||el.textContent.trim();
+      const match=raw.match(/@?([A-Za-z0-9._]{2,30})/);
+      if(match) return match[1];
+    }
+    return '';
+  }
+
+  async function copyUsername(){
+    const value=username();
+    if(!value){toast('현재 계정의 아이디를 찾지 못했습니다.');return;}
+    try{
+      await navigator.clipboard.writeText(value);
+      toast(`@${value} 복사 완료`);
+    }catch{
+      toast('아이디를 복사하지 못했습니다.');
+    }
+  }
+
+  let timer;
+  function toast(message){
+    let el=q('#v10Toast');
+    if(!el){
+      el=document.createElement('div');
+      el.id='v10Toast';
+      el.className='v10Toast';
+      el.setAttribute('role','status');
+      el.setAttribute('aria-live','polite');
+      document.body.appendChild(el);
+    }
+    el.textContent=message;
+    el.classList.add('show');
+    clearTimeout(timer);
+    timer=setTimeout(()=>el.classList.remove('show'),3200);
+  }
+
+  window.unfollowToast=toast;
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start,{once:true}); else start();
+})();

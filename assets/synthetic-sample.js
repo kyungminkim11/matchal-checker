@@ -1,10 +1,12 @@
 (()=>{
   const SAMPLE_KEY='unfollow_synthetic_sample_v1';
   const encoder=new TextEncoder();
+  let lastFocusedElement=null;
 
   document.addEventListener('click',event=>{
     const trigger=event.target.closest('button,a');
     if(!trigger) return;
+
     const isSample=trigger.matches('[data-v8="sample"],#sideSampleBtn,[data-sample]')||/샘플로\s*(먼저\s*)?(보기|체험)/.test(trigger.textContent||'');
     if(isSample){
       event.preventDefault();
@@ -13,14 +15,18 @@
       return;
     }
 
-    if(sessionStorage.getItem(SAMPLE_KEY)==='1'){
-      const instagramLink=trigger.closest('a[href*="instagram.com"],a[href*="instagram.com/"]');
-      if(instagramLink){
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        notify('가상 샘플 계정은 실제 Instagram 프로필로 연결되지 않습니다.');
-      }
+    if(sessionStorage.getItem(SAMPLE_KEY)==='1'&&isProfileTrigger(trigger)){
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      showProfileModal(getTargetUsername(trigger));
     }
+  },true);
+
+  document.addEventListener('change',event=>{
+    const input=event.target.closest?.('input[type="file"]');
+    const file=input?.files?.[0];
+    if(!file||file.name.startsWith('instagram-lava-demo-')) return;
+    leaveSyntheticMode();
   },true);
 
   async function loadSyntheticSample(){
@@ -84,7 +90,7 @@
       banner.id='syntheticSampleBanner';
       banner.className='syntheticSampleBanner';
       banner.setAttribute('role','status');
-      banner.innerHTML='<strong>가상 샘플 모드</strong><span>모든 계정명과 팔로우 관계는 브라우저에서 무작위로 생성되며 실제 인물·계정과 무관합니다. 샘플에서는 Instagram 프로필 링크가 열리지 않습니다.</span>';
+      banner.innerHTML='<strong>가상 샘플 모드</strong><span>모든 계정명과 팔로우 관계는 브라우저에서 무작위로 생성되며 실제 인물·계정과 무관합니다. 프로필 열기를 누르면 샘플 안내가 표시됩니다.</span>';
       const panel=document.getElementById('appPanel')||document.querySelector('.uploadPanel')||document.querySelector('.main');
       panel?.prepend(banner);
     }
@@ -93,13 +99,120 @@
 
   function disableSampleProfileLinks(){
     if(sessionStorage.getItem(SAMPLE_KEY)!=='1') return;
-    document.querySelectorAll('a[href*="instagram.com"]').forEach(link=>{
-      link.dataset.syntheticSample='true';
-      link.setAttribute('aria-label','가상 샘플 계정 — Instagram 링크 비활성화');
-      link.setAttribute('title','가상 샘플 계정은 실제 프로필로 연결되지 않습니다.');
-      link.removeAttribute('target');
+    document.querySelectorAll('a[href*="instagram.com"],[data-action="open"],#focusOpenBtn').forEach(markSyntheticTrigger);
+    document.querySelectorAll('button,a').forEach(element=>{
+      if(/^(Instagram\s*)?프로필\s*열기$/.test((element.textContent||'').trim())) markSyntheticTrigger(element);
     });
     showSampleBanner();
+  }
+
+  function markSyntheticTrigger(element){
+    element.dataset.syntheticSample='true';
+    element.setAttribute('aria-label','가상 샘플 계정 — 실제 Instagram 프로필은 열리지 않음');
+    element.setAttribute('title','가상 샘플 계정 안내 보기');
+    element.removeAttribute('target');
+  }
+
+  function isProfileTrigger(trigger){
+    if(trigger.matches('[data-synthetic-sample="true"],a[href*="instagram.com"],[data-action="open"],#focusOpenBtn')) return true;
+    return /^(Instagram\s*)?프로필\s*열기$/.test((trigger.textContent||'').trim());
+  }
+
+  function getTargetUsername(trigger){
+    const scope=trigger.closest('tr,[role="row"],.row,.accountRow,.resultRow,.focusPanel,.workPanel')||document;
+    const explicit=scope.querySelector?.('[data-username]')?.dataset.username||scope.querySelector?.('.username')?.textContent||'';
+    const text=`${explicit} ${scope.textContent||''}`;
+    const match=text.match(/@([A-Za-z0-9._]{2,60})/);
+    return match?match[1]:'';
+  }
+
+  function showProfileModal(username=''){
+    const modal=ensureProfileModal();
+    const account=modal.querySelector('[data-sample-account]');
+    account.textContent=username?`@${username}`:'현재 가상 샘플 계정';
+    lastFocusedElement=document.activeElement;
+    modal.hidden=false;
+    document.body.classList.add('sampleModalOpen');
+    modal.querySelector('[data-modal-close]')?.focus();
+  }
+
+  function ensureProfileModal(){
+    let modal=document.getElementById('syntheticProfileModal');
+    if(modal) return modal;
+
+    modal=document.createElement('div');
+    modal.id='syntheticProfileModal';
+    modal.className='syntheticProfileModal';
+    modal.hidden=true;
+    modal.setAttribute('role','dialog');
+    modal.setAttribute('aria-modal','true');
+    modal.setAttribute('aria-labelledby','syntheticProfileModalTitle');
+    modal.innerHTML=`
+      <div class="syntheticProfileModalCard">
+        <button type="button" class="syntheticProfileModalClose" data-modal-close aria-label="팝업 닫기">×</button>
+        <div class="syntheticProfileModalIcon" aria-hidden="true">◎</div>
+        <p class="syntheticProfileModalEyebrow">가상 샘플 모드</p>
+        <h2 id="syntheticProfileModalTitle">실제 Instagram 프로필은 열 수 없어요</h2>
+        <strong class="syntheticProfileAccount" data-sample-account>현재 가상 샘플 계정</strong>
+        <p>이 계정은 맞팔체커의 분석·분류·작업 흐름을 체험할 수 있도록 브라우저에서 만든 가상 계정입니다. 실제 Instagram 계정이 아니므로 연결되는 프로필이 없습니다.</p>
+        <div class="syntheticProfileModalInfo">
+          <span>샘플에서 가능한 기능</span>
+          <b>필터 · 상태 선택 · 진행 저장 · 아이디 복사</b>
+          <span>실제 ZIP 사용 시 가능한 기능</span>
+          <b>각 계정의 Instagram 프로필 열기</b>
+        </div>
+        <div class="syntheticProfileModalActions">
+          <button type="button" class="btn ghost" data-modal-close>샘플 계속 보기</button>
+          <button type="button" class="btn primary" data-use-own-zip>내 ZIP으로 분석하기</button>
+        </div>
+      </div>`;
+
+    modal.addEventListener('click',event=>{
+      if(event.target===modal||event.target.closest('[data-modal-close]')) closeProfileModal();
+      if(event.target.closest('[data-use-own-zip]')){
+        closeProfileModal();
+        const input=document.querySelector('input[type="file"]');
+        const upload=input?.closest('.uploadPanel,.drop,section')||input;
+        upload?.scrollIntoView?.({behavior:'smooth',block:'center'});
+        setTimeout(()=>input?.click(),350);
+      }
+    });
+
+    modal.addEventListener('keydown',event=>{
+      if(event.key==='Escape') closeProfileModal();
+      if(event.key==='Tab') trapModalFocus(event,modal);
+    });
+
+    document.body.appendChild(modal);
+    return modal;
+  }
+
+  function closeProfileModal(){
+    const modal=document.getElementById('syntheticProfileModal');
+    if(!modal||modal.hidden) return;
+    modal.hidden=true;
+    document.body.classList.remove('sampleModalOpen');
+    lastFocusedElement?.focus?.();
+  }
+
+  function trapModalFocus(event,modal){
+    const focusable=[...modal.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])')].filter(el=>!el.disabled&&!el.hidden);
+    if(!focusable.length) return;
+    const first=focusable[0];
+    const last=focusable[focusable.length-1];
+    if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+    else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+  }
+
+  function leaveSyntheticMode(){
+    sessionStorage.removeItem(SAMPLE_KEY);
+    document.getElementById('syntheticSampleBanner')?.setAttribute('hidden','');
+    document.querySelectorAll('[data-synthetic-sample="true"]').forEach(element=>{
+      delete element.dataset.syntheticSample;
+      element.removeAttribute('title');
+      element.removeAttribute('aria-label');
+    });
+    closeProfileModal();
   }
 
   new MutationObserver(()=>disableSampleProfileLinks()).observe(document.documentElement,{subtree:true,childList:true});

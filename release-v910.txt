@@ -1,2 +1,0 @@
-Matchal Checker v9.1.0
-Mobile tools, undo, local icons, stale-data guidance, installable PWA and offline cache.

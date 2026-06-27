@@ -1,4 +1,4 @@
-const CACHE='unfollow-v10-2-20260628';
+const CACHE='unfollow-v10-3-20260628';
 const STATIC=[
   '/',
   '/index.html',
@@ -8,6 +8,7 @@ const STATIC=[
   '/assets/v8-base.css?v=10.0',
   '/assets/v8-responsive.css?v=10.0',
   '/assets/local-icons.css?v=10.0',
+  '/assets/brand-fix.css?v=10.1',
   '/assets/product-improvements.css?v=10.0',
   '/assets/work-mode-enhancements.css?v=10.0',
   '/assets/product-improvements.js?v=10.0',

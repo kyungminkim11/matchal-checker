@@ -37,8 +37,12 @@ jobs:
           test -f dist/manifest.webmanifest
           test -f dist/og-image.png
           test -f dist/assets/work-mode-enhancements.css
+          test -f dist/assets/business-info.css
+          test -f dist/assets/business-info.js
           grep -q "인스타 맞팔 확인" dist/index.html
           grep -q "unfollow.lavalabs.co.kr" dist/index.html
+          grep -q "455-23-01867" dist/index.html
+          grep -q "business-info.js" dist/index.html
           ! grep -R "kyungminkim11/matchal-checker" dist
           ! grep -R "code.iconify.design" dist
       - name: Configure Pages

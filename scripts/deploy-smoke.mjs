@@ -55,8 +55,7 @@ async function desktop(browser){
   check('정렬 필터 이름',!!(await page.locator('#sortSelect').getAttribute('aria-label')),{});
   check('상태 필터 이름',!!(await page.locator('#statusSelect').getAttribute('aria-label')),{});
 
-  const oversized=Buffer.alloc(80*1024*1024+1);
-  await page.locator('#zipInput').setInputFiles({name:'oversized.zip',mimeType:'application/zip',buffer:oversized});
+  await page.locator('#zipInput').setInputFiles(path.join(fixtureDir,'oversized.zip'));
   await page.waitForTimeout(150);
   const oversizedState=await page.locator('#zipInput').evaluate(input=>({files:input.files?.length||0,value:input.value}));
   const oversizedError=await page.locator('#errorBox').innerText().catch(()=>'');

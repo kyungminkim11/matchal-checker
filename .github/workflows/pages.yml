@@ -17,18 +17,23 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+
       - name: Build static site
         run: node scripts/build-pages.mjs
+
       - name: Restore social preview image
         run: base64 --decode og-image.txt > dist/og-image.png
-      - name: Validate output
+
+      - name: Validate hardened output
         run: |
           test -f dist/index.html
           test -f dist/CNAME
@@ -42,19 +47,76 @@ jobs:
           test -f dist/assets/ux-v11.css
           test -f dist/assets/ux-v11-fixes.css
           test -f dist/assets/ux-v11.js
+          test -f dist/assets/release-hardening-v12.css
+          test -f dist/assets/release-hardening-v12.js
+          test -f dist/assets/generated-inline-1.js
           grep -q "인스타 맞팔 확인" dist/index.html
           grep -q "unfollow.lavalabs.co.kr" dist/index.html
           grep -q "455-23-01867" dist/index.html
-          grep -q "business-info.js" dist/index.html
-          grep -q "ux-v11.css" dist/assets/local-icons.css
-          grep -q "ux-v11-fixes.css" dist/assets/local-icons.css
-          grep -q "ux-v11.js" dist/assets/business-info.js
+          grep -q "Content-Security-Policy" dist/index.html
+          grep -q "release-hardening-v12.js" dist/index.html
+          grep -R -q "unfollow_progress_v12_" dist/assets/generated-inline-*.js
+          grep -R -q "ZIP_LIMITS" dist/assets/generated-inline-*.js
           ! grep -R "kyungminkim11/matchal-checker" dist
           ! grep -R "code.iconify.design" dist
+          ! grep -R "cdn.jsdelivr.net" dist
+          ! grep -R "bluepen_shop" dist
+          ! grep -R "tokyo_stationery" dist
+
+      - name: Create smoke-test fixtures
+        run: |
+          python3 - <<'PY'
+          import json, os, time, zipfile
+          os.makedirs('smoke-fixtures', exist_ok=True)
+          now=int(time.time())
+          base='connections/followers_and_following/'
+          def following(name):
+              return {'title':name,'string_list_data':[{'href':f'https://www.instagram.com/{name}/','value':name,'timestamp':now}]}
+          def follower(name):
+              return {'title':'','media_list_data':[],'string_list_data':[{'href':f'https://www.instagram.com/{name}/','value':name,'timestamp':now}]}
+          def write(name, following_names, follower_names):
+              with zipfile.ZipFile('smoke-fixtures/'+name,'w',zipfile.ZIP_DEFLATED) as z:
+                  z.writestr(base+'following.json',json.dumps({'relationships_following':[following(x) for x in following_names]}))
+                  z.writestr(base+'followers_1.json',json.dumps([follower(x) for x in follower_names]))
+          write('basic.zip',['alpha','delta'],['alpha'])
+          write('account-a.zip',['shared_target','account_a_only'],[])
+          write('account-b.zip',['shared_target','account_b_only'],[])
+          progress={
+              'version':12,
+              'sourceName':'basic.zip',
+              'progress':{'delta':{'username':'delta','status':'done','updatedAt':'2026-06-28T00:00:00.000Z'}},
+              'settings':{'activeTab':'nonMutual','sort':'recent','status':'all','hideDone':False,'dailyGoal':50}
+          }
+          with open('smoke-fixtures/renamed-progress.txt','w',encoding='utf-8') as f:
+              json.dump(progress,f,ensure_ascii=False)
+          PY
+
+      - name: Install browser test tools
+        run: |
+          npm install --no-save playwright @axe-core/playwright
+          npx playwright install chromium --with-deps
+
+      - name: Start production preview
+        run: |
+          python3 -m http.server 4173 --directory dist > /tmp/unfollow-pages-server.log 2>&1 &
+          echo $! > /tmp/unfollow-pages-server.pid
+          for i in {1..20}; do
+            curl -fsS http://127.0.0.1:4173/ >/dev/null && exit 0
+            sleep 1
+          done
+          cat /tmp/unfollow-pages-server.log
+          exit 1
+
+      - name: Run release smoke tests
+        env:
+          SMOKE_URL: http://127.0.0.1:4173/
+        run: node scripts/deploy-smoke.mjs
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
+
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:

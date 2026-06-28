@@ -40,7 +40,10 @@ body.v8-dark.release-v12 .sidebar :is(.nav,.serviceNav) :is(a,button).active,bod
 body.v8-dark.release-v12 .sidebar :is(.navTitle,.sideFooter),body.v8-dark.release-v12 .sidebar .sideTrustV8 p{color:#c0c7d4!important}
 body.v8-dark.release-v12 :is(.topbar,.serviceTopbar)>p{color:#c0c7d4!important}
 body.v8-dark.release-v12 #drop span{color:#d0d5dd!important}
-body.v8-dark.release-v12 #zipPreflight span{color:#d0d5dd!important}
+body.v8-dark.release-v12 #zipPreflight :is(span,small){color:#d0d5dd!important}
+body.v8-dark.release-v12 :is(#heroSummaryStatus,#dataDateText,.summaryEmptyHint){color:#475467!important}
+body.v8-dark.release-v12 .guideLink{color:#c4beff!important}
+body.v8-dark.release-v12 :is(.stat>span,.target>span,span[title="검토 완료"],#progressText,#sessionText){color:#c0c7d4!important}
 body.v8-dark .workspaceBadgeV12{border-color:#4d46a8;background:#211f3b;color:#d0d5dd}
 body.v8-dark .workspaceBadgeV12 strong{color:#c4beff}
 body.v8-dark .fileSafetyV12{background:#1d212d;color:#c0c7d4}

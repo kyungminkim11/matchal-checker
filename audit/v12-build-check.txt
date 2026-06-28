@@ -1,5 +1,5 @@
-commit=3936f1294203f2e85c5ee6c6ecf8cfca0af0de17
-checked_at=2026-06-28T02:41:02Z
+commit=c004138fcfe2f576adf26a2c935cec9d7cb9bcf5
+checked_at=2026-06-28T06:46:24Z
 ## Syntax checks
 ## Build release
 Base build completed with a removable external-font assertion. Continuing with release cleanup.
@@ -14,39 +14,39 @@ Installing dependencies...
 Switching to root user to install dependencies...
 Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
-Hit:6 https://packages.microsoft.com/repos/azure-cli noble InRelease
-Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
 Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
 Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
 Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Hit:6 https://packages.microsoft.com/repos/azure-cli noble InRelease
+Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
 Get:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease [1825 B]
-Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [156 kB]
-Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [187 kB]
-Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1041 kB]
-Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [261 kB]
-Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [180 kB]
-Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 c-n-f Metadata [17.5 kB]
-Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1656 kB]
-Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [326 kB]
-Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [388 kB]
-Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 c-n-f Metadata [34.8 kB]
-Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1134 kB]
-Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [257 kB]
-Get:21 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
-Get:22 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5768 B]
-Get:23 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [10.5 kB]
-Get:24 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [788 kB]
-Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [179 kB]
-Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [44.9 kB]
-Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 c-n-f Metadata [11.6 kB]
-Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1171 kB]
-Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [229 kB]
-Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.2 kB]
-Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 c-n-f Metadata [24.1 kB]
-Get:32 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1071 kB]
-Get:33 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [245 kB]
+Get:9 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1041 kB]
+Get:10 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [261 kB]
+Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [180 kB]
+Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 c-n-f Metadata [17.5 kB]
+Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1656 kB]
+Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [326 kB]
+Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [388 kB]
+Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 c-n-f Metadata [34.8 kB]
+Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1134 kB]
+Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [257 kB]
+Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+Get:20 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5768 B]
+Get:21 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [10.5 kB]
+Get:22 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [788 kB]
+Get:23 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [179 kB]
+Get:24 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [44.9 kB]
+Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 c-n-f Metadata [11.6 kB]
+Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1171 kB]
+Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [229 kB]
+Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.2 kB]
+Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 c-n-f Metadata [24.1 kB]
+Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1071 kB]
+Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [245 kB]
+Get:32 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [187 kB]
+Get:33 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [156 kB]
 Get:34 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1210 B]
-Fetched 9881 kB in 1s (8475 kB/s)
+Fetched 9881 kB in 1s (8565 kB/s)
 Reading package lists...
 Reading package lists...
 Building dependency tree...
@@ -122,7 +122,7 @@ Get:7 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings a
 Get:8 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3 [94.4 kB]
 Get:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1 [384 kB]
 Get:10 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3 [304 kB]
-Fetched 21.1 MB in 1s (18.1 MB/s)
+Fetched 21.1 MB in 2s (10.5 MB/s)
 Selecting previously unselected package fonts-ipafont-gothic.
 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 202407 files and directories currently installed.)
 Preparing to unpack .../0-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
@@ -321,19 +321,19 @@ curl: (7) Failed to connect to 127.0.0.1 port 4173 after 0 ms: Couldn't connect 
             "nodes": [
               {
                 "target": [
-                  ".topbar > p"
+                  "#resultInfo"
                 ],
-                "html": "<p>안녕하세요. 오늘도 필요한 계정만 차분하게 정리해보세요.</p>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "html": "<span id=\"resultInfo\">1개 중 1개 표시</span>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.42 (foreground color: #667085, background color: #181c27, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
                 "any": [
                   {
                     "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "message": "Element has insufficient color contrast of 3.42 (foreground color: #667085, background color: #181c27, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
                     "data": {
                       "fgColor": "#667085",
-                      "bgColor": "#171a25",
-                      "contrastRatio": 3.48,
-                      "fontSize": "10.5pt (14px)",
+                      "bgColor": "#181c27",
+                      "contrastRatio": 3.42,
+                      "fontSize": "9.0pt (12px)",
                       "fontWeight": "normal",
                       "messageKey": null,
                       "expectedContrastRatio": "4.5:1"
@@ -343,62 +343,18 @@ curl: (7) Failed to connect to 127.0.0.1 port 4173 after 0 ms: Couldn't connect 
               },
               {
                 "target": [
-                  "#drop > div:nth-child(2) > span"
+                  ".meta:nth-child(1) > span"
                 ],
-                "html": "<span>압축을 풀지 않은 .zip 파일을 그대로 올려주세요</span>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.25 (foreground color: #667085, background color: #1c202e, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "html": "<span>분류</span>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.69 (foreground color: #c0c7d4, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
                 "any": [
                   {
                     "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 3.25 (foreground color: #667085, background color: #1c202e, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "message": "Element has insufficient color contrast of 1.69 (foreground color: #c0c7d4, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
                     "data": {
-                      "fgColor": "#667085",
-                      "bgColor": "#1c202e",
-                      "contrastRatio": 3.25,
-                      "fontSize": "9.8pt (13px)",
-                      "fontWeight": "normal",
-                      "messageKey": null,
-                      "expectedContrastRatio": "4.5:1"
-                    }
-                  }
-                ]
-              },
-              {
-                "target": [
-                  "#zipPreflight > span"
-                ],
-                "html": "<span>account-b.zip · 0.5 KB</span>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.08 (foreground color: #475467, background color: #14251b, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
-                "any": [
-                  {
-                    "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 2.08 (foreground color: #475467, background color: #14251b, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
-                    "data": {
-                      "fgColor": "#475467",
-                      "bgColor": "#14251b",
-                      "contrastRatio": 2.08,
-                      "fontSize": "8.3pt (11px)",
-                      "fontWeight": "normal",
-                      "messageKey": null,
-                      "expectedContrastRatio": "4.5:1"
-                    }
-                  }
-                ]
-              },
-              {
-                "target": [
-                  "#zipPreflight > small"
-                ],
-                "html": "<small>내부 JSON 항목은 분석 단계에서 확인합니다.</small>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.22 (foreground color: #667085, background color: #14251b, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
-                "any": [
-                  {
-                    "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 3.22 (foreground color: #667085, background color: #14251b, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
-                    "data": {
-                      "fgColor": "#667085",
-                      "bgColor": "#14251b",
-                      "contrastRatio": 3.22,
+                      "fgColor": "#c0c7d4",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 1.69,
                       "fontSize": "7.5pt (10px)",
                       "fontWeight": "normal",
                       "messageKey": null,
@@ -409,85 +365,19 @@ curl: (7) Failed to connect to 127.0.0.1 port 4173 after 0 ms: Couldn't connect 
               },
               {
                 "target": [
-                  "#heroSummaryStatus"
+                  "#focusType"
                 ],
-                "html": "<span id=\"heroSummaryStatus\">분석 완료</span>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.62 (foreground color: #c0c7d4, background color: #f8fafc, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "html": "<strong id=\"focusType\">취소 검토</strong>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.04 (foreground color: #f8fafc, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1",
                 "any": [
                   {
                     "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 1.62 (foreground color: #c0c7d4, background color: #f8fafc, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "message": "Element has insufficient color contrast of 1.04 (foreground color: #f8fafc, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1",
                     "data": {
-                      "fgColor": "#c0c7d4",
-                      "bgColor": "#f8fafc",
-                      "contrastRatio": 1.62,
-                      "fontSize": "8.3pt (11px)",
-                      "fontWeight": "normal",
-                      "messageKey": null,
-                      "expectedContrastRatio": "4.5:1"
-                    }
-                  }
-                ]
-              },
-              {
-                "target": [
-                  ".summaryEmptyHint"
-                ],
-                "html": "<div class=\"summaryEmptyHint\">ZIP 파일을 올리면 계정 수와 비율이 자동으로 채워집니다.</div>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.62 (foreground color: #c0c7d4, background color: #faf9ff, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
-                "any": [
-                  {
-                    "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 1.62 (foreground color: #c0c7d4, background color: #faf9ff, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
-                    "data": {
-                      "fgColor": "#c0c7d4",
-                      "bgColor": "#faf9ff",
-                      "contrastRatio": 1.62,
-                      "fontSize": "8.3pt (11px)",
-                      "fontWeight": "normal",
-                      "messageKey": null,
-                      "expectedContrastRatio": "4.5:1"
-                    }
-                  }
-                ]
-              },
-              {
-                "target": [
-                  "#dataDateText"
-                ],
-                "html": "<span id=\"dataDateText\">데이터 기준 2026. 06. 28.</span>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.62 (foreground color: #c0c7d4, background color: #f8fafc, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
-                "any": [
-                  {
-                    "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 1.62 (foreground color: #c0c7d4, background color: #f8fafc, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
-                    "data": {
-                      "fgColor": "#c0c7d4",
-                      "bgColor": "#f8fafc",
-                      "contrastRatio": 1.62,
-                      "fontSize": "8.3pt (11px)",
-                      "fontWeight": "normal",
-                      "messageKey": null,
-                      "expectedContrastRatio": "4.5:1"
-                    }
-                  }
-                ]
-              },
-              {
-                "target": [
-                  ".guideLink"
-                ],
-                "html": "<a class=\"guideLink\" href=\"https://accountscenter.instagram.com/info_and_permissions/dyi/\" rel=\"noopener\" target=\"_blank\"><span class=\"iconify\" data-icon=\"ph:book-open-text\"></span>공식 데이터 다운로드 열기</a>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.54 (foreground color: #5145cd, background color: #171a25, font size: 9.8pt (13px), font weight: bold). Expected contrast ratio of 4.5:1",
-                "any": [
-                  {
-                    "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 2.54 (foreground color: #5145cd, background color: #171a25, font size: 9.8pt (13px), font weight: bold). Expected contrast ratio of 4.5:1",
-                    "data": {
-                      "fgColor": "#5145cd",
-                      "bgColor": "#171a25",
-                      "contrastRatio": 2.54,
-                      "fontSize": "9.8pt (13px)",
+                      "fgColor": "#f8fafc",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 1.04,
+                      "fontSize": "9.0pt (12px)",
                       "fontWeight": "bold",
                       "messageKey": null,
                       "expectedContrastRatio": "4.5:1"
@@ -497,18 +387,172 @@ curl: (7) Failed to connect to 127.0.0.1 port 4173 after 0 ms: Couldn't connect 
               },
               {
                 "target": [
-                  ".stat:nth-child(1) > span"
+                  ".meta:nth-child(2) > span"
                 ],
-                "html": "<span>내가 팔로우 중</span>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "html": "<span>상태</span>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.69 (foreground color: #c0c7d4, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
                 "any": [
                   {
                     "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "message": "Element has insufficient color contrast of 1.69 (foreground color: #c0c7d4, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#c0c7d4",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 1.69,
+                      "fontSize": "7.5pt (10px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  "#focusStatus"
+                ],
+                "html": "<strong id=\"focusStatus\">미처리</strong>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.04 (foreground color: #f8fafc, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 1.04 (foreground color: #f8fafc, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#f8fafc",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 1.04,
+                      "fontSize": "9.0pt (12px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  ".meta:nth-child(3) > span"
+                ],
+                "html": "<span>팔로우 날짜</span>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.69 (foreground color: #c0c7d4, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 1.69 (foreground color: #c0c7d4, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#c0c7d4",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 1.69,
+                      "fontSize": "7.5pt (10px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  "#focusDate"
+                ],
+                "html": "<strong id=\"focusDate\">2026. 06. 28.</strong>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.04 (foreground color: #f8fafc, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 1.04 (foreground color: #f8fafc, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#f8fafc",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 1.04,
+                      "fontSize": "9.0pt (12px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  ".meta:nth-child(4) > span"
+                ],
+                "html": "<span>현재 필터</span>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.69 (foreground color: #c0c7d4, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 1.69 (foreground color: #c0c7d4, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#c0c7d4",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 1.69,
+                      "fontSize": "7.5pt (10px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  "#focusFilter"
+                ],
+                "html": "<strong id=\"focusFilter\">취소 검토</strong>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.04 (foreground color: #f8fafc, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 1.04 (foreground color: #f8fafc, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#f8fafc",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 1.04,
+                      "fontSize": "9.0pt (12px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  ".sessionBox > span"
+                ],
+                "html": "<span>이번 세션 프로필 열람</span>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.29 (foreground color: #667085, background color: #1b1f2d, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 3.29 (foreground color: #667085, background color: #1b1f2d, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
                     "data": {
                       "fgColor": "#667085",
-                      "bgColor": "#171a25",
-                      "contrastRatio": 3.48,
+                      "bgColor": "#1b1f2d",
+                      "contrastRatio": 3.29,
+                      "fontSize": "9.0pt (12px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  ".noteBox"
+                ],
+                "html": "<div class=\"noteBox\">Instagram에서 직접 처리한 뒤 상태만 기록하세요. 맞팔체커는 자동 언팔을 실행하지 않습니다.</div>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.29 (foreground color: #667085, background color: #1b1f2d, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 3.29 (foreground color: #667085, background color: #1b1f2d, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#667085",
+                      "bgColor": "#1b1f2d",
+                      "contrastRatio": 3.29,
                       "fontSize": "8.3pt (11px)",
                       "fontWeight": "normal",
                       "messageKey": null,
@@ -519,63 +563,19 @@ curl: (7) Failed to connect to 127.0.0.1 port 4173 after 0 ms: Couldn't connect 
               },
               {
                 "target": [
-                  ".stat:nth-child(2) > span"
+                  ".shortcutGuide > span:nth-child(1)"
                 ],
-                "html": "<span>나를 팔로우 중</span>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "html": "<span><kbd>D</kbd> 취소 완료</span>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.42 (foreground color: #667085, background color: #181c27, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
                 "any": [
                   {
                     "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "message": "Element has insufficient color contrast of 3.42 (foreground color: #667085, background color: #181c27, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
                     "data": {
                       "fgColor": "#667085",
-                      "bgColor": "#171a25",
-                      "contrastRatio": 3.48,
-                      "fontSize": "8.3pt (11px)",
-                      "fontWeight": "normal",
-                      "messageKey": null,
-                      "expectedContrastRatio": "4.5:1"
-                    }
-                  }
-                ]
-              },
-              {
-                "target": [
-                  ".stat:nth-child(3) > span[title=\"서로 팔로우\"][data-label-hint=\"서로 팔로우\"]"
-                ],
-                "html": "<span title=\"서로 팔로우\" data-label-hint=\"서로 팔로우\">맞팔</span>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
-                "any": [
-                  {
-                    "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
-                    "data": {
-                      "fgColor": "#667085",
-                      "bgColor": "#171a25",
-                      "contrastRatio": 3.48,
-                      "fontSize": "8.3pt (11px)",
-                      "fontWeight": "normal",
-                      "messageKey": null,
-                      "expectedContrastRatio": "4.5:1"
-                    }
-                  }
-                ]
-              },
-              {
-                "target": [
-                  ".target > span"
-                ],
-                "html": "<span>팔로우 취소 검토</span>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
-                "any": [
-                  {
-                    "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
-                    "data": {
-                      "fgColor": "#667085",
-                      "bgColor": "#171a25",
-                      "contrastRatio": 3.48,
-                      "fontSize": "8.3pt (11px)",
+                      "bgColor": "#181c27",
+                      "contrastRatio": 3.42,
+                      "fontSize": "7.5pt (10px)",
                       "fontWeight": "normal",
                       "messageKey": null,
                       "expectedContrastRatio": "4.5:1"
@@ -597,7 +597,7 @@ curl: (7) Failed to connect to 127.0.0.1 port 4173 after 0 ms: Couldn't connect 
     },
     {
       "name": "모바일-390 상단바 표시",
-      "pass": true,
+      "pass": false,
       "details": {}
     },
     {
@@ -652,7 +652,7 @@ curl: (7) Failed to connect to 127.0.0.1 port 4173 after 0 ms: Couldn't connect 
     },
     {
       "name": "모바일-320 상단바 표시",
-      "pass": true,
+      "pass": false,
       "details": {}
     },
     {
@@ -718,19 +718,19 @@ curl: (7) Failed to connect to 127.0.0.1 port 4173 after 0 ms: Couldn't connect 
             "nodes": [
               {
                 "target": [
-                  ".topbar > p"
+                  "#resultInfo"
                 ],
-                "html": "<p>안녕하세요. 오늘도 필요한 계정만 차분하게 정리해보세요.</p>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "html": "<span id=\"resultInfo\">1개 중 1개 표시</span>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.42 (foreground color: #667085, background color: #181c27, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
                 "any": [
                   {
                     "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "message": "Element has insufficient color contrast of 3.42 (foreground color: #667085, background color: #181c27, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
                     "data": {
                       "fgColor": "#667085",
-                      "bgColor": "#171a25",
-                      "contrastRatio": 3.48,
-                      "fontSize": "10.5pt (14px)",
+                      "bgColor": "#181c27",
+                      "contrastRatio": 3.42,
+                      "fontSize": "9.0pt (12px)",
                       "fontWeight": "normal",
                       "messageKey": null,
                       "expectedContrastRatio": "4.5:1"
@@ -740,62 +740,18 @@ curl: (7) Failed to connect to 127.0.0.1 port 4173 after 0 ms: Couldn't connect 
               },
               {
                 "target": [
-                  "#drop > div:nth-child(2) > span"
+                  ".meta:nth-child(1) > span"
                 ],
-                "html": "<span>압축을 풀지 않은 .zip 파일을 그대로 올려주세요</span>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.25 (foreground color: #667085, background color: #1c202e, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "html": "<span>분류</span>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.69 (foreground color: #c0c7d4, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
                 "any": [
                   {
                     "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 3.25 (foreground color: #667085, background color: #1c202e, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "message": "Element has insufficient color contrast of 1.69 (foreground color: #c0c7d4, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
                     "data": {
-                      "fgColor": "#667085",
-                      "bgColor": "#1c202e",
-                      "contrastRatio": 3.25,
-                      "fontSize": "9.8pt (13px)",
-                      "fontWeight": "normal",
-                      "messageKey": null,
-                      "expectedContrastRatio": "4.5:1"
-                    }
-                  }
-                ]
-              },
-              {
-                "target": [
-                  "#zipPreflight > span"
-                ],
-                "html": "<span>account-b.zip · 0.5 KB</span>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.08 (foreground color: #475467, background color: #14251b, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
-                "any": [
-                  {
-                    "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 2.08 (foreground color: #475467, background color: #14251b, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
-                    "data": {
-                      "fgColor": "#475467",
-                      "bgColor": "#14251b",
-                      "contrastRatio": 2.08,
-                      "fontSize": "8.3pt (11px)",
-                      "fontWeight": "normal",
-                      "messageKey": null,
-                      "expectedContrastRatio": "4.5:1"
-                    }
-                  }
-                ]
-              },
-              {
-                "target": [
-                  "#zipPreflight > small"
-                ],
-                "html": "<small>내부 JSON 항목은 분석 단계에서 확인합니다.</small>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.22 (foreground color: #667085, background color: #14251b, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
-                "any": [
-                  {
-                    "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 3.22 (foreground color: #667085, background color: #14251b, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
-                    "data": {
-                      "fgColor": "#667085",
-                      "bgColor": "#14251b",
-                      "contrastRatio": 3.22,
+                      "fgColor": "#c0c7d4",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 1.69,
                       "fontSize": "7.5pt (10px)",
                       "fontWeight": "normal",
                       "messageKey": null,
@@ -806,85 +762,19 @@ curl: (7) Failed to connect to 127.0.0.1 port 4173 after 0 ms: Couldn't connect 
               },
               {
                 "target": [
-                  "#heroSummaryStatus"
+                  "#focusType"
                 ],
-                "html": "<span id=\"heroSummaryStatus\">분석 완료</span>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.62 (foreground color: #c0c7d4, background color: #f8fafc, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "html": "<strong id=\"focusType\">취소 검토</strong>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.04 (foreground color: #f8fafc, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1",
                 "any": [
                   {
                     "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 1.62 (foreground color: #c0c7d4, background color: #f8fafc, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "message": "Element has insufficient color contrast of 1.04 (foreground color: #f8fafc, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1",
                     "data": {
-                      "fgColor": "#c0c7d4",
-                      "bgColor": "#f8fafc",
-                      "contrastRatio": 1.62,
-                      "fontSize": "8.3pt (11px)",
-                      "fontWeight": "normal",
-                      "messageKey": null,
-                      "expectedContrastRatio": "4.5:1"
-                    }
-                  }
-                ]
-              },
-              {
-                "target": [
-                  ".summaryEmptyHint"
-                ],
-                "html": "<div class=\"summaryEmptyHint\">ZIP 파일을 올리면 계정 수와 비율이 자동으로 채워집니다.</div>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.62 (foreground color: #c0c7d4, background color: #faf9ff, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
-                "any": [
-                  {
-                    "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 1.62 (foreground color: #c0c7d4, background color: #faf9ff, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
-                    "data": {
-                      "fgColor": "#c0c7d4",
-                      "bgColor": "#faf9ff",
-                      "contrastRatio": 1.62,
-                      "fontSize": "8.3pt (11px)",
-                      "fontWeight": "normal",
-                      "messageKey": null,
-                      "expectedContrastRatio": "4.5:1"
-                    }
-                  }
-                ]
-              },
-              {
-                "target": [
-                  "#dataDateText"
-                ],
-                "html": "<span id=\"dataDateText\">데이터 기준 2026. 06. 28.</span>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.62 (foreground color: #c0c7d4, background color: #f8fafc, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
-                "any": [
-                  {
-                    "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 1.62 (foreground color: #c0c7d4, background color: #f8fafc, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
-                    "data": {
-                      "fgColor": "#c0c7d4",
-                      "bgColor": "#f8fafc",
-                      "contrastRatio": 1.62,
-                      "fontSize": "8.3pt (11px)",
-                      "fontWeight": "normal",
-                      "messageKey": null,
-                      "expectedContrastRatio": "4.5:1"
-                    }
-                  }
-                ]
-              },
-              {
-                "target": [
-                  ".guideLink"
-                ],
-                "html": "<a class=\"guideLink\" href=\"https://accountscenter.instagram.com/info_and_permissions/dyi/\" rel=\"noopener\" target=\"_blank\"><span class=\"iconify\" data-icon=\"ph:book-open-text\"></span>공식 데이터 다운로드 열기</a>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.54 (foreground color: #5145cd, background color: #171a25, font size: 9.8pt (13px), font weight: bold). Expected contrast ratio of 4.5:1",
-                "any": [
-                  {
-                    "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 2.54 (foreground color: #5145cd, background color: #171a25, font size: 9.8pt (13px), font weight: bold). Expected contrast ratio of 4.5:1",
-                    "data": {
-                      "fgColor": "#5145cd",
-                      "bgColor": "#171a25",
-                      "contrastRatio": 2.54,
-                      "fontSize": "9.8pt (13px)",
+                      "fgColor": "#f8fafc",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 1.04,
+                      "fontSize": "9.0pt (12px)",
                       "fontWeight": "bold",
                       "messageKey": null,
                       "expectedContrastRatio": "4.5:1"
@@ -894,18 +784,172 @@ curl: (7) Failed to connect to 127.0.0.1 port 4173 after 0 ms: Couldn't connect 
               },
               {
                 "target": [
-                  ".stat:nth-child(1) > span"
+                  ".meta:nth-child(2) > span"
                 ],
-                "html": "<span>내가 팔로우 중</span>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "html": "<span>상태</span>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.69 (foreground color: #c0c7d4, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
                 "any": [
                   {
                     "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "message": "Element has insufficient color contrast of 1.69 (foreground color: #c0c7d4, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#c0c7d4",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 1.69,
+                      "fontSize": "7.5pt (10px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  "#focusStatus"
+                ],
+                "html": "<strong id=\"focusStatus\">미처리</strong>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.04 (foreground color: #f8fafc, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 1.04 (foreground color: #f8fafc, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#f8fafc",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 1.04,
+                      "fontSize": "9.0pt (12px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  ".meta:nth-child(3) > span"
+                ],
+                "html": "<span>팔로우 날짜</span>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.69 (foreground color: #c0c7d4, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 1.69 (foreground color: #c0c7d4, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#c0c7d4",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 1.69,
+                      "fontSize": "7.5pt (10px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  "#focusDate"
+                ],
+                "html": "<strong id=\"focusDate\">2026. 06. 28.</strong>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.04 (foreground color: #f8fafc, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 1.04 (foreground color: #f8fafc, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#f8fafc",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 1.04,
+                      "fontSize": "9.0pt (12px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  ".meta:nth-child(4) > span"
+                ],
+                "html": "<span>현재 필터</span>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.69 (foreground color: #c0c7d4, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 1.69 (foreground color: #c0c7d4, background color: #ffffff, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#c0c7d4",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 1.69,
+                      "fontSize": "7.5pt (10px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  "#focusFilter"
+                ],
+                "html": "<strong id=\"focusFilter\">취소 검토</strong>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.04 (foreground color: #f8fafc, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 1.04 (foreground color: #f8fafc, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#f8fafc",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 1.04,
+                      "fontSize": "9.0pt (12px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  ".sessionBox > span"
+                ],
+                "html": "<span>이번 세션 프로필 열람</span>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.29 (foreground color: #667085, background color: #1b1f2d, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 3.29 (foreground color: #667085, background color: #1b1f2d, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
                     "data": {
                       "fgColor": "#667085",
-                      "bgColor": "#171a25",
-                      "contrastRatio": 3.48,
+                      "bgColor": "#1b1f2d",
+                      "contrastRatio": 3.29,
+                      "fontSize": "9.0pt (12px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  ".noteBox"
+                ],
+                "html": "<div class=\"noteBox\">Instagram에서 직접 처리한 뒤 상태만 기록하세요. 맞팔체커는 자동 언팔을 실행하지 않습니다.</div>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.29 (foreground color: #667085, background color: #1b1f2d, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 3.29 (foreground color: #667085, background color: #1b1f2d, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#667085",
+                      "bgColor": "#1b1f2d",
+                      "contrastRatio": 3.29,
                       "fontSize": "8.3pt (11px)",
                       "fontWeight": "normal",
                       "messageKey": null,
@@ -916,63 +960,19 @@ curl: (7) Failed to connect to 127.0.0.1 port 4173 after 0 ms: Couldn't connect 
               },
               {
                 "target": [
-                  ".stat:nth-child(2) > span"
+                  ".shortcutGuide > span:nth-child(1)"
                 ],
-                "html": "<span>나를 팔로우 중</span>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "html": "<span><kbd>D</kbd> 취소 완료</span>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.42 (foreground color: #667085, background color: #181c27, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
                 "any": [
                   {
                     "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "message": "Element has insufficient color contrast of 3.42 (foreground color: #667085, background color: #181c27, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1",
                     "data": {
                       "fgColor": "#667085",
-                      "bgColor": "#171a25",
-                      "contrastRatio": 3.48,
-                      "fontSize": "8.3pt (11px)",
-                      "fontWeight": "normal",
-                      "messageKey": null,
-                      "expectedContrastRatio": "4.5:1"
-                    }
-                  }
-                ]
-              },
-              {
-                "target": [
-                  ".stat:nth-child(3) > span[title=\"서로 팔로우\"][data-label-hint=\"서로 팔로우\"]"
-                ],
-                "html": "<span title=\"서로 팔로우\" data-label-hint=\"서로 팔로우\">맞팔</span>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
-                "any": [
-                  {
-                    "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
-                    "data": {
-                      "fgColor": "#667085",
-                      "bgColor": "#171a25",
-                      "contrastRatio": 3.48,
-                      "fontSize": "8.3pt (11px)",
-                      "fontWeight": "normal",
-                      "messageKey": null,
-                      "expectedContrastRatio": "4.5:1"
-                    }
-                  }
-                ]
-              },
-              {
-                "target": [
-                  ".target > span"
-                ],
-                "html": "<span>팔로우 취소 검토</span>",
-                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
-                "any": [
-                  {
-                    "id": "color-contrast",
-                    "message": "Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
-                    "data": {
-                      "fgColor": "#667085",
-                      "bgColor": "#171a25",
-                      "contrastRatio": 3.48,
-                      "fontSize": "8.3pt (11px)",
+                      "bgColor": "#181c27",
+                      "contrastRatio": 3.42,
+                      "fontSize": "7.5pt (10px)",
                       "fontWeight": "normal",
                       "messageKey": null,
                       "expectedContrastRatio": "4.5:1"
@@ -984,6 +984,14 @@ curl: (7) Failed to connect to 127.0.0.1 port 4173 after 0 ms: Couldn't connect 
           }
         ]
       }
+    },
+    {
+      "name": "모바일-390 상단바 표시",
+      "details": {}
+    },
+    {
+      "name": "모바일-320 상단바 표시",
+      "details": {}
     }
   ]
 }

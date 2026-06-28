@@ -1,0 +1,168 @@
+{
+  "checks": [
+    {
+      "name": "데스크톱 페이지 로드",
+      "pass": true,
+      "details": {
+        "status": 200
+      }
+    },
+    {
+      "name": "데스크톱 초기 오류 없음",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "외부 리소스 요청 없음",
+      "pass": true,
+      "details": {
+        "external": []
+      }
+    },
+    {
+      "name": "CSP 메타 존재",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "정렬 필터 이름",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "상태 필터 이름",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "실제 ZIP 분석",
+      "pass": true,
+      "details": {
+        "following": 2,
+        "mutual": 1,
+        "nonMutual": 1
+      }
+    },
+    {
+      "name": "내용 기반 JSON 기록 불러오기",
+      "pass": true,
+      "details": {
+        "done": 1
+      }
+    },
+    {
+      "name": "계정 A 상태 저장",
+      "pass": true,
+      "details": {
+        "done": 1
+      }
+    },
+    {
+      "name": "계정별 진행 기록 분리",
+      "pass": true,
+      "details": {
+        "done": 0
+      }
+    },
+    {
+      "name": "데스크톱 가로 넘침 없음",
+      "pass": true,
+      "details": {
+        "overflow": false
+      }
+    },
+    {
+      "name": "데스크톱 결과 화면 접근성",
+      "pass": false,
+      "details": {
+        "violations": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "nodes": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "데스크톱 실행 오류 없음",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "모바일 상단바 표시",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "모바일 하단 내비 표시",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "모바일 카드 결과 표시",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "데스크톱 표 모바일 숨김",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "모바일 필터 버튼 표시",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "모바일 필터 펼치기",
+      "pass": true,
+      "details": {
+        "expanded": "true"
+      }
+    },
+    {
+      "name": "모바일 가로 넘침 없음",
+      "pass": true,
+      "details": {
+        "overflow": false,
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "name": "모바일 결과 화면 접근성",
+      "pass": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "name": "모바일 실행 오류 없음",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    }
+  ],
+  "failures": [
+    {
+      "name": "데스크톱 결과 화면 접근성",
+      "details": {
+        "violations": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "nodes": 1
+          }
+        ]
+      }
+    }
+  ]
+}
+
+exit_code=1

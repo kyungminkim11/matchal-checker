@@ -7,9 +7,9 @@ on:
       - '.github/workflows/release-audit.yml'
       - 'scripts/build-pages.mjs'
       - 'scripts/build-release.mjs'
-      - 'scripts/release-audit.mjs'
-      - 'scripts/release-debug.mjs'
-      - 'scripts/extended-audit.mjs'
+      - 'scripts/deploy-smoke.mjs'
+      - 'scripts/create-smoke-fixtures.py'
+      - 'scripts/write-release-report.mjs'
       - 'assets/release-hardening-v12.css'
       - 'assets/release-hardening-v12.js'
       - 'sw.js'
@@ -37,131 +37,54 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Build production site
+      - name: Build final release
         run: |
           node scripts/build-release.mjs
           base64 --decode og-image.txt > dist/og-image.png
 
-      - name: Create Instagram ZIP fixtures
-        run: |
-          python3 - <<'PY'
-          import json, os, time, zipfile
-          os.makedirs('audit-fixtures', exist_ok=True)
-          now = int(time.time())
-
-          def following_item(name, index=0):
-              return {'title': name, 'string_list_data': [{'href': f'https://www.instagram.com/{name}/', 'value': name, 'timestamp': now-index}]}
-
-          def follower_item(name, index=0):
-              return {'title': '', 'media_list_data': [], 'string_list_data': [{'href': f'https://www.instagram.com/{name}/', 'value': name, 'timestamp': now-index}]}
-
-          def write_zip(filename, files):
-              with zipfile.ZipFile(f'audit-fixtures/{filename}', 'w', zipfile.ZIP_DEFLATED) as archive:
-                  for path, value in files.items():
-                      archive.writestr(path, value if isinstance(value, str) else json.dumps(value, ensure_ascii=False))
-
-          base = 'connections/followers_and_following/'
-          write_zip('valid-basic.zip', {
-              base+'following.json': {'relationships_following': [following_item(x, i) for i, x in enumerate(['alpha','bravo','delta'])]},
-              base+'followers_1.json': [follower_item(x, i) for i, x in enumerate(['alpha','charlie'])],
-          })
-          write_zip('valid-split-followers.zip', {
-              base+'following.json': {'relationships_following': [following_item(x, i) for i, x in enumerate(['alpha','bravo','delta'])]},
-              base+'followers_1.json': [follower_item('alpha')],
-              base+'followers_2.json': [follower_item('bravo')],
-          })
-          malicious = '<img data-audit-xss src=x onerror="window.__auditXss=1">'
-          write_zip('malicious-username.zip', {
-              base+'following.json': {'relationships_following': [following_item(malicious)]},
-              base+'followers_1.json': [],
-          })
-          following = [f'user_{i:05d}' for i in range(5000)]
-          followers = following[:3000] + [f'follower_only_{i:05d}' for i in range(1000)]
-          write_zip('large-5000.zip', {
-              base+'following.json': {'relationships_following': [following_item(x, i) for i, x in enumerate(following)]},
-              base+'followers_1.json': [follower_item(x, i) for i, x in enumerate(followers)],
-          })
-          write_zip('html-export.zip', {
-              base+'following.html': '<html><body>following</body></html>',
-              base+'followers_1.html': '<html><body>followers</body></html>',
-          })
-          write_zip('missing-files.zip', {'readme.txt': 'missing Instagram JSON files'})
-          write_zip('account-a.zip', {
-              base+'following.json': {'relationships_following': [following_item('account_a_mutual'), following_item('account_a_only')]},
-              base+'followers_1.json': [follower_item('account_a_mutual')],
-          })
-          write_zip('account-b.zip', {
-              base+'following.json': {'relationships_following': [following_item('account_b_only')]},
-              base+'followers_1.json': [],
-          })
-          write_zip('case-insensitive.zip', {
-              base+'following.json': {'relationships_following': [following_item('Alpha')]},
-              base+'followers_1.json': [follower_item('alpha')],
-          })
-          write_zip('duplicates.zip', {
-              base+'following.json': {'relationships_following': [following_item('duplicate_user'), following_item('duplicate_user')]},
-              base+'followers_1.json': [follower_item('duplicate_user'), follower_item('duplicate_user')],
-          })
-          write_zip('shared-account-a.zip', {
-              base+'following.json': {'relationships_following': [following_item('shared_target'), following_item('account_a_only')]},
-              base+'followers_1.json': [],
-          })
-          write_zip('shared-account-b.zip', {
-              base+'following.json': {'relationships_following': [following_item('shared_target'), following_item('account_b_only')]},
-              base+'followers_1.json': [],
-          })
-          with zipfile.ZipFile('audit-fixtures/malformed-json.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
-              archive.writestr(base+'following.json', '{invalid json')
-              archive.writestr(base+'followers_1.json', '[]')
-          write_zip('invalid-extension.txt', {
-              base+'following.json': {'relationships_following': [following_item('wrong_extension')]},
-              base+'followers_1.json': [],
-          })
-          write_zip('empty-valid.zip', {
-              base+'following.json': {'relationships_following': []},
-              base+'followers_1.json': [],
-          })
-          PY
+      - name: Create production fixtures
+        run: python3 scripts/create-smoke-fixtures.py
 
       - name: Install browser audit tools
         run: |
           npm install --no-save playwright @axe-core/playwright
           npx playwright install chromium --with-deps
 
-      - name: Start local production server
+      - name: Start production preview
         run: |
-          python3 -m http.server 4173 --directory dist > /tmp/unfollow-audit-server.log 2>&1 &
-          echo $! > /tmp/unfollow-audit-server.pid
+          python3 -m http.server 4173 --directory dist > /tmp/unfollow-release-audit.log 2>&1 &
           for i in {1..20}; do
             curl -fsS http://127.0.0.1:4173/ >/dev/null && exit 0
             sleep 1
           done
-          cat /tmp/unfollow-audit-server.log
+          cat /tmp/unfollow-release-audit.log
           exit 1
 
-      - name: Run release audit
+      - name: Run unified release audit
+        id: smoke
+        continue-on-error: true
         env:
-          AUDIT_URL: http://127.0.0.1:4173/
-        run: node scripts/release-audit.mjs
+          SMOKE_URL: http://127.0.0.1:4173/
+        run: |
+          mkdir -p audit
+          node scripts/deploy-smoke.mjs > audit/latest-report.json
 
-      - name: Diagnose release blockers
-        env:
-          AUDIT_URL: http://127.0.0.1:4173/
-        run: node scripts/release-debug.mjs
+      - name: Write GO or NO_GO summary
+        id: report
+        continue-on-error: true
+        run: node scripts/write-release-report.mjs
 
-      - name: Run extended functional audit
-        env:
-          AUDIT_URL: http://127.0.0.1:4173/
-        run: node scripts/extended-audit.mjs
-
-      - name: Commit audit reports
+      - name: Commit release report
+        if: always()
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add audit/latest-report.json audit/latest-report.md audit/debug-report.json audit/extended-report.json
-          if git diff --cached --quiet; then
-            echo 'No audit report changes'
-            exit 0
-          fi
-          git commit -m 'chore: update release readiness audit [skip ci]'
+          git add audit/latest-report.json
+          test -f audit/latest-report.md && git add audit/latest-report.md || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'chore: update v12 release report [skip ci]'
           git push
+
+      - name: Enforce GO decision
+        if: steps.smoke.outcome != 'success' || steps.report.outcome != 'success'
+        run: exit 1

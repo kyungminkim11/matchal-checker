@@ -77,4 +77,10 @@ progress = {
 with open(os.path.join(OUTPUT_DIR, "renamed-progress.txt"), "w", encoding="utf-8") as file:
     json.dump(progress, file, ensure_ascii=False)
 
+# Playwright does not accept an in-memory upload buffer above 50MB. A sparse
+# file exercises the browser-side 80MB preflight without writing 80MB of data.
+oversized_path = os.path.join(OUTPUT_DIR, "oversized.zip")
+with open(oversized_path, "wb") as file:
+    file.truncate(80 * 1024 * 1024 + 1)
+
 print(f"Created smoke fixtures in {OUTPUT_DIR}")

@@ -133,6 +133,9 @@ jobs:
       - name: Record Pages workflow outcome
         env:
           SOURCE_SHA: ${{ github.sha }}
+          RUN_ID: ${{ github.run_id }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+          REPOSITORY: ${{ github.repository }}
           BUILD_RESULT: ${{ needs.build.result }}
           DEPLOY_RESULT: ${{ needs.deploy.result }}
           DEPLOYED_PAGE_URL: ${{ needs.deploy.outputs.page_url }}
@@ -143,6 +146,9 @@ jobs:
             echo 'V13_PAGES_WORKFLOW_STATUS'
             echo "source_commit=$SOURCE_SHA"
             echo "checked_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo "run_id=$RUN_ID"
+            echo "run_attempt=$RUN_ATTEMPT"
+            echo "run_url=https://github.com/$REPOSITORY/actions/runs/$RUN_ID"
             echo "build_result=$BUILD_RESULT"
             echo "deploy_result=$DEPLOY_RESULT"
             echo "page_url=$DEPLOYED_PAGE_URL"
@@ -152,6 +158,7 @@ jobs:
               echo 'V13_PAGES_DEPLOYED'
               echo "source_commit=$SOURCE_SHA"
               echo "deployed_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+              echo "run_id=$RUN_ID"
               echo "page_url=$DEPLOYED_PAGE_URL"
             } > audit/pages-v13-deploy.txt
           fi

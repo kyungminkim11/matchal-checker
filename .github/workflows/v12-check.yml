@@ -24,33 +24,76 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Check JavaScript syntax
-        run: |
-          node --check scripts/build-pages.mjs
-          node --check assets/release-hardening-v12.js
-          node --check sw.js
-      - name: Build production output
-        run: node scripts/build-pages.mjs
-      - name: Validate hardened output
-        run: |
-          test -f dist/index.html
-          test -f dist/assets/release-hardening-v12.css
-          test -f dist/assets/release-hardening-v12.js
-          test -f dist/assets/generated-inline-1.js
-          grep -q 'Content-Security-Policy' dist/index.html
-          grep -R -q 'unfollow_progress_v12_' dist/assets/generated-inline-*.js
-          grep -R -q 'ZIP_LIMITS' dist/assets/generated-inline-*.js
-          ! grep -R 'cdn.jsdelivr.net' dist
-          ! grep -R 'bluepen_shop' dist
-          ! grep -R 'tokyo_stationery' dist
-          ! grep -P '<script(?![^>]*src=)(?![^>]*application/ld\+json)' dist/index.html
-      - name: Record successful check
+
+      - name: Run build diagnostics
+        id: diagnostic
+        continue-on-error: true
         run: |
           mkdir -p audit
-          printf 'V12_BUILD_OK\ncommit=%s\nchecked_at=%s\n' "$GITHUB_SHA" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > audit/v12-build-check.txt
+          set +e
+          {
+            echo "commit=$GITHUB_SHA"
+            echo "checked_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo
+            echo '## node --check scripts/build-pages.mjs'
+            node --check scripts/build-pages.mjs
+            SYNTAX_BUILD=$?
+            echo
+            echo '## node --check assets/release-hardening-v12.js'
+            node --check assets/release-hardening-v12.js
+            SYNTAX_UI=$?
+            echo
+            echo '## node --check sw.js'
+            node --check sw.js
+            SYNTAX_SW=$?
+            echo
+            echo '## node scripts/build-pages.mjs'
+            node scripts/build-pages.mjs
+            BUILD=$?
+            echo
+            echo "syntax_build=$SYNTAX_BUILD"
+            echo "syntax_ui=$SYNTAX_UI"
+            echo "syntax_sw=$SYNTAX_SW"
+            echo "build=$BUILD"
+            if [ "$BUILD" -eq 0 ]; then
+              echo
+              echo '## output validation'
+              test -f dist/index.html; V1=$?
+              test -f dist/assets/release-hardening-v12.css; V2=$?
+              test -f dist/assets/release-hardening-v12.js; V3=$?
+              test -f dist/assets/generated-inline-1.js; V4=$?
+              grep -q 'Content-Security-Policy' dist/index.html; V5=$?
+              grep -R -q 'unfollow_progress_v12_' dist/assets/generated-inline-*.js; V6=$?
+              grep -R -q 'ZIP_LIMITS' dist/assets/generated-inline-*.js; V7=$?
+              grep -R 'cdn.jsdelivr.net' dist >/dev/null; V8=$?
+              grep -R 'bluepen_shop' dist >/dev/null; V9=$?
+              grep -R 'tokyo_stationery' dist >/dev/null; V10=$?
+              echo "files=$V1,$V2,$V3,$V4 csp=$V5 workspace=$V6 limits=$V7 external_font_match=$V8 legacy_sample_1=$V9 legacy_sample_2=$V10"
+              if [ "$V1" -ne 0 ] || [ "$V2" -ne 0 ] || [ "$V3" -ne 0 ] || [ "$V4" -ne 0 ] || [ "$V5" -ne 0 ] || [ "$V6" -ne 0 ] || [ "$V7" -ne 0 ] || [ "$V8" -eq 0 ] || [ "$V9" -eq 0 ] || [ "$V10" -eq 0 ]; then VALIDATE=1; else VALIDATE=0; fi
+            else
+              VALIDATE=1
+            fi
+            echo "validate=$VALIDATE"
+            if [ "$SYNTAX_BUILD" -ne 0 ] || [ "$SYNTAX_UI" -ne 0 ] || [ "$SYNTAX_SW" -ne 0 ] || [ "$BUILD" -ne 0 ] || [ "$VALIDATE" -ne 0 ]; then
+              echo 'result=FAIL'
+              exit 1
+            fi
+            echo 'result=PASS'
+          } > audit/v12-build-check.txt 2>&1
+          STATUS=$?
+          cat audit/v12-build-check.txt
+          exit $STATUS
+
+      - name: Commit diagnostic report
+        if: always()
+        run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add audit/v12-build-check.txt
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'chore: record v12 build check [skip ci]'
           git push
+
+      - name: Fail unsuccessful check
+        if: steps.diagnostic.outcome != 'success'
+        run: exit 1

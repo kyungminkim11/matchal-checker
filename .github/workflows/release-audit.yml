@@ -7,6 +7,7 @@ on:
       - '.github/workflows/release-audit.yml'
       - 'scripts/release-audit.mjs'
       - 'scripts/release-debug.mjs'
+      - 'scripts/extended-audit.mjs'
   workflow_dispatch:
 
 permissions:
@@ -88,6 +89,33 @@ jobs:
               base+'following.json': {'relationships_following': [following_item('account_b_only')]},
               base+'followers_1.json': [],
           })
+          write_zip('case-insensitive.zip', {
+              base+'following.json': {'relationships_following': [following_item('Alpha')]},
+              base+'followers_1.json': [follower_item('alpha')],
+          })
+          write_zip('duplicates.zip', {
+              base+'following.json': {'relationships_following': [following_item('duplicate_user'), following_item('duplicate_user')]},
+              base+'followers_1.json': [follower_item('duplicate_user'), follower_item('duplicate_user')],
+          })
+          write_zip('shared-account-a.zip', {
+              base+'following.json': {'relationships_following': [following_item('shared_target'), following_item('account_a_only')]},
+              base+'followers_1.json': [],
+          })
+          write_zip('shared-account-b.zip', {
+              base+'following.json': {'relationships_following': [following_item('shared_target'), following_item('account_b_only')]},
+              base+'followers_1.json': [],
+          })
+          with zipfile.ZipFile('audit-fixtures/malformed-json.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              archive.writestr(base+'following.json', '{invalid json')
+              archive.writestr(base+'followers_1.json', '[]')
+          write_zip('invalid-extension.txt', {
+              base+'following.json': {'relationships_following': [following_item('wrong_extension')]},
+              base+'followers_1.json': [],
+          })
+          write_zip('empty-valid.zip', {
+              base+'following.json': {'relationships_following': []},
+              base+'followers_1.json': [],
+          })
           PY
 
       - name: Install browser audit tools
@@ -116,11 +144,16 @@ jobs:
           AUDIT_URL: http://127.0.0.1:4173/
         run: node scripts/release-debug.mjs
 
+      - name: Run extended functional audit
+        env:
+          AUDIT_URL: http://127.0.0.1:4173/
+        run: node scripts/extended-audit.mjs
+
       - name: Commit audit reports
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add audit/latest-report.json audit/latest-report.md audit/debug-report.json
+          git add audit/latest-report.json audit/latest-report.md audit/debug-report.json audit/extended-report.json
           if git diff --cached --quiet; then
             echo 'No audit report changes'
             exit 0

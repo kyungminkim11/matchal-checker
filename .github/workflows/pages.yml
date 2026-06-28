@@ -28,7 +28,7 @@ jobs:
           node-version: '22'
 
       - name: Build static site
-        run: node scripts/build-pages.mjs
+        run: node scripts/build-release.mjs
 
       - name: Restore social preview image
         run: base64 --decode og-image.txt > dist/og-image.png

@@ -5,7 +5,8 @@ const auditDir=path.join(process.cwd(),'audit');
 const mdPath=path.join(auditDir,'latest-report.md');
 const sources=[
   ['기존 기능 회귀 검사',path.join(auditDir,'latest-report.json')],
-  ['v13 기능 검사',path.join(auditDir,'v13-report.json')]
+  ['v13 기능 검사',path.join(auditDir,'v13-report.json')],
+  ['v14 디자인 검사',path.join(auditDir,'design-v14-report.json')]
 ];
 const sections=[];
 const checks=[];
@@ -21,7 +22,7 @@ const passed=checks.filter(check=>check.pass===true).length;
 const decision=checks.length&&failures.length===0?'GO':'NO_GO';
 const score=checks.length?Math.round(passed/checks.length*100):0;
 const lines=[
-  '# 맞팔체커 v13 출시 준비 보고서',
+  '# 맞팔체커 v14 출시 준비 보고서',
   '',
   `- 생성 시각: ${new Date().toISOString()}`,
   `- 커밋: ${process.env.GITHUB_SHA||'-'}`,

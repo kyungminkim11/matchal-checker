@@ -1,10 +1,27 @@
 (()=>{
-  const loadScript=(src,key)=>{
-    if(document.querySelector(`script[data-loader="${key}"]`)) return;
+  const loadScript=(src,key,onload)=>{
+    const existing=document.querySelector(`script[data-loader="${key}"]`);
+    if(existing){
+      if(onload){
+        if(existing.dataset.loaded==='true') onload();
+        else existing.addEventListener('load',onload,{once:true});
+      }
+      return;
+    }
     const script=document.createElement('script');
     script.src=src;
     script.dataset.loader=key;
+    script.addEventListener('load',()=>{
+      script.dataset.loaded='true';
+      onload?.();
+    },{once:true});
     document.head.appendChild(script);
+  };
+
+  const loadFeatureStack=()=>{
+    loadScript('/assets/v13-features.js?v=13.0','v13-features',()=>{
+      loadScript('/assets/design-v14.js?v=14.0','design-v14');
+    });
   };
 
   loadScript('/assets/synthetic-sample.js?v=10.2','synthetic-sample');
@@ -12,7 +29,7 @@
 
   const start=()=>{
     if(document.getElementById('businessInfoV10')){
-      loadScript('/assets/v13-features.js?v=13.0','v13-features');
+      loadFeatureStack();
       return;
     }
 
@@ -85,7 +102,7 @@
 
     const main=document.querySelector('.main')||document.body;
     main.appendChild(footer);
-    loadScript('/assets/v13-features.js?v=13.0','v13-features');
+    loadFeatureStack();
   };
 
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start,{once:true});

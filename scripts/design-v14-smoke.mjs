@@ -25,7 +25,7 @@ async function inspect(browser,{name,width,height,mobile=false}){
   await page.goto(baseURL,{waitUntil:'networkidle',timeout:45000});
   await page.waitForSelector('body.design-v14',{state:'attached',timeout:15000});
   await page.waitForSelector('link[data-design-v14]',{state:'attached',timeout:15000});
-  await page.waitForTimeout(250);
+  await page.waitForTimeout(350);
 
   const metrics=await page.evaluate(()=>{
     const rect=selector=>{
@@ -35,9 +35,15 @@ async function inspect(browser,{name,width,height,mobile=false}){
       const style=getComputedStyle(element);
       return {x:box.x,y:box.y,width:box.width,height:box.height,display:style.display,position:style.position,fontSize:parseFloat(style.fontSize)||0,lineHeight:parseFloat(style.lineHeight)||0};
     };
+    const isVisible=element=>{
+      const style=getComputedStyle(element);
+      const box=element.getBoundingClientRect();
+      return !element.hidden&&style.display!=='none'&&style.visibility!=='hidden'&&box.width>0&&box.height>0;
+    };
     const hero=document.querySelector('.hero');
     const primary=document.querySelector('.v14HeroPrimary');
     const aside=document.querySelector('.v14HeroAside');
+    const mobileHeaders=Array.from(document.querySelectorAll('.mobileTopV8,.mobileHeader,.mobileTop,.mobileBar'));
     return {
       overflow:Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)>innerWidth+2,
       bodyClass:document.body.className,
@@ -46,11 +52,16 @@ async function inspect(browser,{name,width,height,mobile=false}){
       hero:rect('.hero'),
       primary:rect('.v14HeroPrimary'),
       aside:rect('.v14HeroAside'),
+      summary:rect('.v14SummaryGrid'),
+      steps:rect('.v14StepStrip'),
       heading:rect('.v14HeroPrimary h1'),
       drop:rect('.v14PrimaryDrop'),
       chip:rect('.v14LocalChip'),
       resource:rect('.v14ResourceBar'),
       heroChildren:hero?Array.from(hero.children).length:0,
+      mobileHeaderCount:mobileHeaders.length,
+      visibleMobileHeaderCount:mobileHeaders.filter(isVisible).length,
+      duplicateMobileHeaders:document.querySelectorAll('.v14DuplicateMobileHeader').length,
       version:Array.from(document.querySelectorAll('body *')).map(node=>node.children.length?null:node.textContent?.trim()).find(text=>/^v14(?:\.0)?$/i.test(text||''))||''
     };
   });
@@ -69,13 +80,15 @@ async function inspect(browser,{name,width,height,mobile=false}){
     check(`${name} 로컬 분석 배지 표시`,metrics.chip&&metrics.chip.display!=='none'&&metrics.chip.width>80,metrics.chip||{});
   }
 
-  if(width<=980&&width>760){
+  if(width<=980){
     check(`${name} 히어로 단일 열 전환`,metrics.primary&&metrics.aside&&metrics.aside.y>=metrics.primary.y+metrics.primary.height-3,{primary:metrics.primary,aside:metrics.aside});
+    check(`${name} 요약 패널 전체 폭 사용`,metrics.summary&&metrics.aside&&metrics.summary.width>=metrics.aside.width*.88,{summary:metrics.summary,aside:metrics.aside});
   }
 
   if(mobile){
     check(`${name} 모바일 제목 크기`,metrics.heading&&metrics.heading.fontSize<=43,metrics.heading||{});
     check(`${name} 모바일 사이드바 숨김`,metrics.sidebar&&metrics.sidebar.display==='none',metrics.sidebar||{});
+    check(`${name} 모바일 상단 헤더 하나만 표시`,metrics.visibleMobileHeaderCount===1,{total:metrics.mobileHeaderCount,visible:metrics.visibleMobileHeaderCount,duplicates:metrics.duplicateMobileHeaders});
   }
 
   const axe=await new AxeBuilder({page}).analyze();

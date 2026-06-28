@@ -25,7 +25,7 @@ async function inspect(browser,{name,width,height,mobile=false}){
   await page.goto(baseURL,{waitUntil:'networkidle',timeout:45000});
   await page.waitForSelector('body.design-v14',{state:'attached',timeout:15000});
   await page.waitForSelector('link[data-design-v14]',{state:'attached',timeout:15000});
-  await page.waitForTimeout(350);
+  await page.waitForTimeout(1100);
 
   const metrics=await page.evaluate(()=>{
     const rect=selector=>{
@@ -43,7 +43,13 @@ async function inspect(browser,{name,width,height,mobile=false}){
     const hero=document.querySelector('.hero');
     const primary=document.querySelector('.v14HeroPrimary');
     const aside=document.querySelector('.v14HeroAside');
-    const mobileHeaders=Array.from(document.querySelectorAll('.mobileTopV8,.mobileHeader,.mobileTop,.mobileBar'));
+    const headerCandidates=Array.from(document.querySelectorAll('header,[class*="mobile" i],[class*="Mobile"]')).filter(element=>{
+      if(element.closest('.sidebar')) return false;
+      const text=(element.textContent||'').replace(/\s+/g,' ').trim();
+      if(!text.includes('맞팔체커')) return false;
+      const box=element.getBoundingClientRect();
+      return box.width>=innerWidth*.75&&box.height>=36&&box.height<=90&&box.top<=150&&element.querySelectorAll('button,a').length>0;
+    }).filter((element,index,array)=>!array.some((other,otherIndex)=>otherIndex!==index&&other.contains(element)));
     return {
       overflow:Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)>innerWidth+2,
       bodyClass:document.body.className,
@@ -59,8 +65,8 @@ async function inspect(browser,{name,width,height,mobile=false}){
       chip:rect('.v14LocalChip'),
       resource:rect('.v14ResourceBar'),
       heroChildren:hero?Array.from(hero.children).length:0,
-      mobileHeaderCount:mobileHeaders.length,
-      visibleMobileHeaderCount:mobileHeaders.filter(isVisible).length,
+      mobileHeaderCount:headerCandidates.length,
+      visibleMobileHeaderCount:headerCandidates.filter(isVisible).length,
       duplicateMobileHeaders:document.querySelectorAll('.v14DuplicateMobileHeader').length,
       version:Array.from(document.querySelectorAll('body *')).map(node=>node.children.length?null:node.textContent?.trim()).find(text=>/^v14(?:\.0)?$/i.test(text||''))||''
     };

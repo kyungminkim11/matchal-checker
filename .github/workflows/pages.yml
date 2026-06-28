@@ -53,6 +53,7 @@ jobs:
           test -f dist/assets/v13-features.css
           test -f dist/assets/v13-features.js
           test -f dist/assets/design-v14.css
+          test -f dist/assets/design-v14-fixes.css
           test -f dist/assets/design-v14.js
           test -f dist/assets/generated-inline-1.js
           grep -q "인스타 맞팔 확인" dist/index.html
@@ -61,6 +62,7 @@ jobs:
           grep -q "Content-Security-Policy" dist/index.html
           grep -q "design-v14.js" dist/assets/business-info.js
           grep -q "design-v14.css" dist/assets/design-v14.js
+          grep -q "design-v14-fixes.css" dist/assets/design-v14.js
           grep -R -q "WORKSPACE_SIGNATURE_KEY" dist/assets/generated-inline-*.js
           grep -R -q "ZIP_LIMITS" dist/assets/generated-inline-*.js
           grep -q "unfollow-v14" dist/sw.js

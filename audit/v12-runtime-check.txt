@@ -1,14 +1,773 @@
-/home/runner/work/unfollow/unfollow/node_modules/playwright-core/lib/coreBundle.js:59197
-    throw new Error("Cannot set buffer larger than 50Mb, please write it to a file and pass its path instead.");
-          ^
-
-Error: Cannot set buffer larger than 50Mb, please write it to a file and pass its path instead.
-    at convertInputFiles (/home/runner/work/unfollow/unfollow/node_modules/playwright-core/lib/coreBundle.js:59197:11)
-    at _Frame.setInputFiles (/home/runner/work/unfollow/unfollow/node_modules/playwright-core/lib/coreBundle.js:59039:33)
-    at _Locator.setInputFiles (/home/runner/work/unfollow/unfollow/node_modules/playwright-core/lib/coreBundle.js:57047:34)
-    at desktop (file:///home/runner/work/unfollow/unfollow/scripts/deploy-smoke.mjs:59:35)
-    at async file:///home/runner/work/unfollow/unfollow/scripts/deploy-smoke.mjs:132:3
-
-Node.js v22.23.0
+{
+  "checks": [
+    {
+      "name": "데스크톱 페이지 로드",
+      "pass": true,
+      "details": {
+        "status": 200
+      }
+    },
+    {
+      "name": "데스크톱 초기 오류 없음",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "외부 리소스 요청 없음",
+      "pass": true,
+      "details": {
+        "external": []
+      }
+    },
+    {
+      "name": "CSP 메타 존재",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "정렬 필터 이름",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "상태 필터 이름",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "80MB 초과 ZIP 사전 차단",
+      "pass": true,
+      "details": {
+        "oversizedState": {
+          "files": 0,
+          "value": ""
+        },
+        "oversizedError": "ZIP 파일이 80MB를 초과합니다. Instagram 다운로드에서 “팔로워 및 팔로잉” 항목만 선택해 다시 받아주세요."
+      }
+    },
+    {
+      "name": "실제 ZIP 분석",
+      "pass": true,
+      "details": {
+        "following": 2,
+        "mutual": 1,
+        "nonMutual": 1
+      }
+    },
+    {
+      "name": "내용 기반 JSON 기록 불러오기",
+      "pass": true,
+      "details": {
+        "done": 1
+      }
+    },
+    {
+      "name": "계정 A 상태 저장",
+      "pass": true,
+      "details": {
+        "done": 1
+      }
+    },
+    {
+      "name": "계정별 진행 기록 분리",
+      "pass": true,
+      "details": {
+        "done": 0
+      }
+    },
+    {
+      "name": "데스크톱 가로 넘침 없음",
+      "pass": true,
+      "details": {
+        "overflow": false
+      }
+    },
+    {
+      "name": "데스크톱 결과 화면 접근성",
+      "pass": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "name": "데스크톱 다크모드 결과 화면 접근성",
+      "pass": false,
+      "details": {
+        "violations": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+            "nodes": [
+              {
+                "target": [
+                  "a[href$=\"#upload\"]"
+                ],
+                "html": "<a href=\"#upload\"><span class=\"iconify\" data-icon=\"ph:cloud-arrow-up\"></span>분석하기</a>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#475467",
+                      "bgColor": "#171a25",
+                      "contrastRatio": 2.25,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  ".nav > a[href$=\"#results\"]"
+                ],
+                "html": "<a href=\"#results\"><span class=\"iconify\" data-icon=\"ph:chart-bar\"></span>결과 보기</a>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#475467",
+                      "bgColor": "#171a25",
+                      "contrastRatio": 2.25,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  ".nav > a[href$=\"#work\"]"
+                ],
+                "html": "<a href=\"#work\"><span class=\"iconify\" data-icon=\"ph:check-square-offset\"></span>작업 모드<span class=\"badge\">모바일</span></a>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#475467",
+                      "bgColor": "#171a25",
+                      "contrastRatio": 2.25,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  "a[href$=\"#guide\"]"
+                ],
+                "html": "<a href=\"#guide\"><span class=\"iconify\" data-icon=\"ph:book-open-text\"></span>사용 가이드</a>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#475467",
+                      "bgColor": "#171a25",
+                      "contrastRatio": 2.25,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  ".nav > a[href$=\"#faq\"]"
+                ],
+                "html": "<a href=\"#faq\"><span class=\"iconify\" data-icon=\"ph:question\"></span>도움말 &amp; FAQ</a>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#475467",
+                      "bgColor": "#171a25",
+                      "contrastRatio": 2.25,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  "#sideSampleBtn"
+                ],
+                "html": "<button id=\"sideSampleBtn\"><span class=\"iconify\" data-icon=\"ph:play-circle\"></span>샘플로 체험</button>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#475467",
+                      "bgColor": "#171a25",
+                      "contrastRatio": 2.25,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  "#sideExportBtn"
+                ],
+                "html": "<button id=\"sideExportBtn\"><span class=\"iconify\" data-icon=\"ph:download-simple\"></span>진행 저장</button>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#475467",
+                      "bgColor": "#171a25",
+                      "contrastRatio": 2.25,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  "#sideClearBtn"
+                ],
+                "html": "<button id=\"sideClearBtn\"><span class=\"iconify\" data-icon=\"ph:trash\"></span>진행 초기화</button>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#475467",
+                      "bgColor": "#171a25",
+                      "contrastRatio": 2.25,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  "#sideHelpBtn"
+                ],
+                "html": "<button id=\"sideHelpBtn\"><span class=\"iconify\" data-icon=\"ph:info\"></span>처음 사용 가이드</button>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#475467",
+                      "bgColor": "#171a25",
+                      "contrastRatio": 2.25,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  ".topbar > p"
+                ],
+                "html": "<p>안녕하세요. 오늘도 필요한 계정만 차분하게 정리해보세요.</p>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#667085",
+                      "bgColor": "#171a25",
+                      "contrastRatio": 3.48,
+                      "fontSize": "10.5pt (14px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  "#drop > div:nth-child(2) > span"
+                ],
+                "html": "<span>압축을 풀지 않은 .zip 파일을 그대로 올려주세요</span>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.25 (foreground color: #667085, background color: #1c202e, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 3.25 (foreground color: #667085, background color: #1c202e, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#667085",
+                      "bgColor": "#1c202e",
+                      "contrastRatio": 3.25,
+                      "fontSize": "9.8pt (13px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  "#zipPreflight > span"
+                ],
+                "html": "<span>account-b.zip · 0.5 KB</span>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.08 (foreground color: #475467, background color: #14251b, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 2.08 (foreground color: #475467, background color: #14251b, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#475467",
+                      "bgColor": "#14251b",
+                      "contrastRatio": 2.08,
+                      "fontSize": "8.3pt (11px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "데스크톱 실행 오류 없음",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "모바일-390 상단바 표시",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "모바일-390 하단 내비 표시",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "모바일-390 카드 결과 표시",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "모바일-390 데스크톱 표 숨김",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "모바일-390 필터 버튼 표시",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "모바일-390 필터 펼치기",
+      "pass": true,
+      "details": {
+        "expanded": "true"
+      }
+    },
+    {
+      "name": "모바일-390 가로 넘침 없음",
+      "pass": true,
+      "details": {
+        "overflow": false,
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "name": "모바일-390 결과 화면 접근성",
+      "pass": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "name": "모바일-390 실행 오류 없음",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "모바일-320 상단바 표시",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "모바일-320 하단 내비 표시",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "모바일-320 카드 결과 표시",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "모바일-320 데스크톱 표 숨김",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "모바일-320 필터 버튼 표시",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "모바일-320 필터 펼치기",
+      "pass": true,
+      "details": {
+        "expanded": "true"
+      }
+    },
+    {
+      "name": "모바일-320 가로 넘침 없음",
+      "pass": true,
+      "details": {
+        "overflow": false,
+        "width": 320,
+        "scrollWidth": 320
+      }
+    },
+    {
+      "name": "모바일-320 결과 화면 접근성",
+      "pass": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "name": "모바일-320 실행 오류 없음",
+      "pass": true,
+      "details": {
+        "errors": []
+      }
+    }
+  ],
+  "failures": [
+    {
+      "name": "데스크톱 다크모드 결과 화면 접근성",
+      "details": {
+        "violations": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+            "nodes": [
+              {
+                "target": [
+                  "a[href$=\"#upload\"]"
+                ],
+                "html": "<a href=\"#upload\"><span class=\"iconify\" data-icon=\"ph:cloud-arrow-up\"></span>분석하기</a>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#475467",
+                      "bgColor": "#171a25",
+                      "contrastRatio": 2.25,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  ".nav > a[href$=\"#results\"]"
+                ],
+                "html": "<a href=\"#results\"><span class=\"iconify\" data-icon=\"ph:chart-bar\"></span>결과 보기</a>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#475467",
+                      "bgColor": "#171a25",
+                      "contrastRatio": 2.25,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  ".nav > a[href$=\"#work\"]"
+                ],
+                "html": "<a href=\"#work\"><span class=\"iconify\" data-icon=\"ph:check-square-offset\"></span>작업 모드<span class=\"badge\">모바일</span></a>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#475467",
+                      "bgColor": "#171a25",
+                      "contrastRatio": 2.25,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  "a[href$=\"#guide\"]"
+                ],
+                "html": "<a href=\"#guide\"><span class=\"iconify\" data-icon=\"ph:book-open-text\"></span>사용 가이드</a>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#475467",
+                      "bgColor": "#171a25",
+                      "contrastRatio": 2.25,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  ".nav > a[href$=\"#faq\"]"
+                ],
+                "html": "<a href=\"#faq\"><span class=\"iconify\" data-icon=\"ph:question\"></span>도움말 &amp; FAQ</a>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#475467",
+                      "bgColor": "#171a25",
+                      "contrastRatio": 2.25,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  "#sideSampleBtn"
+                ],
+                "html": "<button id=\"sideSampleBtn\"><span class=\"iconify\" data-icon=\"ph:play-circle\"></span>샘플로 체험</button>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#475467",
+                      "bgColor": "#171a25",
+                      "contrastRatio": 2.25,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  "#sideExportBtn"
+                ],
+                "html": "<button id=\"sideExportBtn\"><span class=\"iconify\" data-icon=\"ph:download-simple\"></span>진행 저장</button>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#475467",
+                      "bgColor": "#171a25",
+                      "contrastRatio": 2.25,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  "#sideClearBtn"
+                ],
+                "html": "<button id=\"sideClearBtn\"><span class=\"iconify\" data-icon=\"ph:trash\"></span>진행 초기화</button>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#475467",
+                      "bgColor": "#171a25",
+                      "contrastRatio": 2.25,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  "#sideHelpBtn"
+                ],
+                "html": "<button id=\"sideHelpBtn\"><span class=\"iconify\" data-icon=\"ph:info\"></span>처음 사용 가이드</button>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 2.25 (foreground color: #475467, background color: #171a25, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#475467",
+                      "bgColor": "#171a25",
+                      "contrastRatio": 2.25,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "bold",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  ".topbar > p"
+                ],
+                "html": "<p>안녕하세요. 오늘도 필요한 계정만 차분하게 정리해보세요.</p>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 3.48 (foreground color: #667085, background color: #171a25, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#667085",
+                      "bgColor": "#171a25",
+                      "contrastRatio": 3.48,
+                      "fontSize": "10.5pt (14px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  "#drop > div:nth-child(2) > span"
+                ],
+                "html": "<span>압축을 풀지 않은 .zip 파일을 그대로 올려주세요</span>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.25 (foreground color: #667085, background color: #1c202e, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 3.25 (foreground color: #667085, background color: #1c202e, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#667085",
+                      "bgColor": "#1c202e",
+                      "contrastRatio": 3.25,
+                      "fontSize": "9.8pt (13px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              },
+              {
+                "target": [
+                  "#zipPreflight > span"
+                ],
+                "html": "<span>account-b.zip · 0.5 KB</span>",
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.08 (foreground color: #475467, background color: #14251b, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "message": "Element has insufficient color contrast of 2.08 (foreground color: #475467, background color: #14251b, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    "data": {
+                      "fgColor": "#475467",
+                      "bgColor": "#14251b",
+                      "contrastRatio": 2.08,
+                      "fontSize": "8.3pt (11px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
 
 exit_code=1

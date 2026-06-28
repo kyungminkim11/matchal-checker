@@ -18,6 +18,7 @@ on:
       - 'assets/v13-features.css'
       - 'assets/v13-features.js'
       - 'assets/design-v14.css'
+      - 'assets/design-v14-fixes.css'
       - 'assets/design-v14.js'
       - 'assets/business-info.js'
       - 'sw.js'
@@ -56,8 +57,10 @@ jobs:
           node scripts/build-v13.mjs
           base64 --decode og-image.txt > dist/og-image.png
           test -f dist/assets/design-v14.css
+          test -f dist/assets/design-v14-fixes.css
           test -f dist/assets/design-v14.js
           grep -q 'design-v14.js' dist/assets/business-info.js
+          grep -q 'design-v14-fixes.css' dist/assets/design-v14.js
 
       - name: Create production fixtures
         run: python3 scripts/create-smoke-fixtures.py

@@ -10,12 +10,16 @@ on:
       - 'scripts/build-v13.mjs'
       - 'scripts/deploy-smoke.mjs'
       - 'scripts/v13-smoke.mjs'
+      - 'scripts/design-v14-smoke.mjs'
       - 'scripts/create-smoke-fixtures.py'
       - 'scripts/write-release-report.mjs'
       - 'assets/release-hardening-v12.css'
       - 'assets/release-hardening-v12.js'
       - 'assets/v13-features.css'
       - 'assets/v13-features.js'
+      - 'assets/design-v14.css'
+      - 'assets/design-v14.js'
+      - 'assets/business-info.js'
       - 'sw.js'
   workflow_dispatch:
 
@@ -45,12 +49,15 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-chromium-v13
+          key: ${{ runner.os }}-playwright-chromium-v14
 
-      - name: Build final v13 release
+      - name: Build final v14 release
         run: |
           node scripts/build-v13.mjs
           base64 --decode og-image.txt > dist/og-image.png
+          test -f dist/assets/design-v14.css
+          test -f dist/assets/design-v14.js
+          grep -q 'design-v14.js' dist/assets/business-info.js
 
       - name: Create production fixtures
         run: python3 scripts/create-smoke-fixtures.py
@@ -86,6 +93,13 @@ jobs:
           SMOKE_URL: http://127.0.0.1:4173/
         run: node scripts/v13-smoke.mjs > audit/v13-report.json
 
+      - name: Run v14 design audit
+        id: v14
+        continue-on-error: true
+        env:
+          SMOKE_URL: http://127.0.0.1:4173/
+        run: node scripts/design-v14-smoke.mjs
+
       - name: Write GO or NO_GO summary
         id: report
         continue-on-error: true
@@ -98,11 +112,12 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           test -f audit/latest-report.json && git add audit/latest-report.json || true
           test -f audit/v13-report.json && git add audit/v13-report.json || true
+          test -f audit/design-v14-report.json && git add audit/design-v14-report.json || true
           test -f audit/latest-report.md && git add audit/latest-report.md || true
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'chore: update v13 release report [skip ci]'
+          git commit -m 'chore: update v14 release report [skip ci]'
           git push
 
       - name: Enforce GO decision
-        if: steps.regression.outcome != 'success' || steps.v13.outcome != 'success' || steps.report.outcome != 'success'
+        if: steps.regression.outcome != 'success' || steps.v13.outcome != 'success' || steps.v14.outcome != 'success' || steps.report.outcome != 'success'
         run: exit 1

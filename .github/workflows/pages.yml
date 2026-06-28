@@ -64,32 +64,7 @@ jobs:
           ! grep -R "tokyo_stationery" dist
 
       - name: Create smoke-test fixtures
-        run: |
-          python3 - <<'PY'
-          import json, os, time, zipfile
-          os.makedirs('smoke-fixtures', exist_ok=True)
-          now=int(time.time())
-          base='connections/followers_and_following/'
-          def following(name):
-              return {'title':name,'string_list_data':[{'href':f'https://www.instagram.com/{name}/','value':name,'timestamp':now}]}
-          def follower(name):
-              return {'title':'','media_list_data':[],'string_list_data':[{'href':f'https://www.instagram.com/{name}/','value':name,'timestamp':now}]}
-          def write(name, following_names, follower_names):
-              with zipfile.ZipFile('smoke-fixtures/'+name,'w',zipfile.ZIP_DEFLATED) as z:
-                  z.writestr(base+'following.json',json.dumps({'relationships_following':[following(x) for x in following_names]}))
-                  z.writestr(base+'followers_1.json',json.dumps([follower(x) for x in follower_names]))
-          write('basic.zip',['alpha','delta'],['alpha'])
-          write('account-a.zip',['shared_target','account_a_only'],[])
-          write('account-b.zip',['shared_target','account_b_only'],[])
-          progress={
-              'version':12,
-              'sourceName':'basic.zip',
-              'progress':{'delta':{'username':'delta','status':'done','updatedAt':'2026-06-28T00:00:00.000Z'}},
-              'settings':{'activeTab':'nonMutual','sort':'recent','status':'all','hideDone':False,'dailyGoal':50}
-          }
-          with open('smoke-fixtures/renamed-progress.txt','w',encoding='utf-8') as f:
-              json.dump(progress,f,ensure_ascii=False)
-          PY
+        run: python3 scripts/create-smoke-fixtures.py
 
       - name: Install browser test tools
         run: |

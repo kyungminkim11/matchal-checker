@@ -3,6 +3,7 @@ html{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto San
 body,button,input,select,textarea{font-family:inherit!important}
 [hidden]{display:none!important}
 .lavaByline a,.navTitle,.sideFooter,.sub,.mobileScrollHint,.summaryEmptyHint,.businessBrandV10 span,.businessNoticeV10,.sideTrustV8 p,.serviceTopbar p,.trustItem,.privacyProof span,.guideStep span,.onboardCard p,.onboardCard li,.sectionHead p,.panelTitle span,.metaGrid span,.queueCard p,.focusPanel p,.shortcutGuide,.dataNote,.helperText{color:var(--v12-muted)!important}
+body.release-v12 .sidebar .lavaByline>a[href$="lavalabs.co.kr/"]{color:#475467!important;text-decoration-color:#98a2b3!important}
 .badge,.newBadge{color:#4033b8!important;background:#e8e5ff!important;border-color:#cfc9ff!important}
 .muted,.panelHeader .muted,.focusPanel .muted,.statusLine{color:var(--v12-muted)!important}
 .table th{color:#475467!important}
@@ -32,6 +33,7 @@ body,button,input,select,textarea{font-family:inherit!important}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 body.v8-dark{--v12-text:#f8fafc;--v12-muted:#c0c7d4;--v12-subtle:#aeb7c7;--v12-brand:#c4beff;--v12-brand-soft:#282446;--v12-focus:rgba(196,190,255,.5)}
+body.v8-dark.release-v12 .sidebar .lavaByline>a[href$="lavalabs.co.kr/"]{color:#d0d5dd!important}
 body.v8-dark .workspaceBadgeV12{border-color:#4d46a8;background:#211f3b;color:#d0d5dd}
 body.v8-dark .workspaceBadgeV12 strong{color:#c4beff}
 body.v8-dark .fileSafetyV12{background:#1d212d;color:#c0c7d4}

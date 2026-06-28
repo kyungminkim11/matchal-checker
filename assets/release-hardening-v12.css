@@ -2,7 +2,7 @@
 html{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Arial,sans-serif!important}
 body,button,input,select,textarea{font-family:inherit!important}
 [hidden]{display:none!important}
-.lavaByline a,.navTitle,.sideFooter,.sub,.mobileScrollHint,.summaryEmptyHint,.businessBrandV10 span,.businessNoticeV10{color:var(--v12-muted)!important}
+.lavaByline a,.navTitle,.sideFooter,.sub,.mobileScrollHint,.summaryEmptyHint,.businessBrandV10 span,.businessNoticeV10,.sideTrustV8 p,.serviceTopbar p,.trustItem,.privacyProof span,.guideStep span,.onboardCard p,.onboardCard li,.sectionHead p,.panelTitle span,.metaGrid span,.queueCard p,.focusPanel p,.shortcutGuide,.dataNote,.helperText{color:var(--v12-muted)!important}
 .badge,.newBadge{color:#4033b8!important;background:#e8e5ff!important;border-color:#cfc9ff!important}
 .muted,.panelHeader .muted,.focusPanel .muted,.statusLine{color:var(--v12-muted)!important}
 .table th{color:#475467!important}

@@ -34,6 +34,10 @@ body.release-v12 .sidebar .lavaByline>a[href$="lavalabs.co.kr/"]{color:#475467!i
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 body.v8-dark{--v12-text:#f8fafc;--v12-muted:#c0c7d4;--v12-subtle:#aeb7c7;--v12-brand:#c4beff;--v12-brand-soft:#282446;--v12-focus:rgba(196,190,255,.5)}
 body.v8-dark.release-v12 .sidebar .lavaByline>a[href$="lavalabs.co.kr/"]{color:#d0d5dd!important}
+body.v8-dark.release-v12 .sidebar :is(.nav,.serviceNav) :is(a,button){color:#d0d5dd!important}
+body.v8-dark.release-v12 .sidebar :is(.nav,.serviceNav) :is(a,button) .iconify{color:inherit!important}
+body.v8-dark.release-v12 .sidebar :is(.nav,.serviceNav) :is(a,button).active,body.v8-dark.release-v12 .sidebar :is(.nav,.serviceNav) :is(a,button).isActive{color:#fff!important;background:#292541!important}
+body.v8-dark.release-v12 .sidebar :is(.navTitle,.sideFooter),body.v8-dark.release-v12 .sidebar .sideTrustV8 p{color:#c0c7d4!important}
 body.v8-dark .workspaceBadgeV12{border-color:#4d46a8;background:#211f3b;color:#d0d5dd}
 body.v8-dark .workspaceBadgeV12 strong{color:#c4beff}
 body.v8-dark .fileSafetyV12{background:#1d212d;color:#c0c7d4}

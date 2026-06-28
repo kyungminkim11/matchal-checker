@@ -55,6 +55,13 @@ async function desktop(browser){
   check('정렬 필터 이름',!!(await page.locator('#sortSelect').getAttribute('aria-label')),{});
   check('상태 필터 이름',!!(await page.locator('#statusSelect').getAttribute('aria-label')),{});
 
+  const oversized=Buffer.alloc(80*1024*1024+1);
+  await page.locator('#zipInput').setInputFiles({name:'oversized.zip',mimeType:'application/zip',buffer:oversized});
+  await page.waitForTimeout(150);
+  const oversizedState=await page.locator('#zipInput').evaluate(input=>({files:input.files?.length||0,value:input.value}));
+  const oversizedError=await page.locator('#errorBox').innerText().catch(()=>'');
+  check('80MB 초과 ZIP 사전 차단',oversizedState.files===0&&/80MB/.test(oversizedError),{oversizedState,oversizedError});
+
   await page.locator('#zipInput').setInputFiles(path.join(fixtureDir,'basic.zip'));
   await page.waitForFunction(()=>Number((document.querySelector('#countFollowing')?.textContent||'').replace(/\D/g,''))===2,null,{timeout:15000});
   check('실제 ZIP 분석',await number(page,'#countFollowing')===2&&await number(page,'#countMutual')===1&&await number(page,'#countNonMutual')===1,{
@@ -81,12 +88,16 @@ async function desktop(browser){
   const overflow=await page.evaluate(()=>Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)>innerWidth+2);
   check('데스크톱 가로 넘침 없음',!overflow,{overflow});
   await axe(page,'데스크톱 결과 화면');
+  await page.evaluate(()=>document.body.classList.add('v8-dark'));
+  await page.waitForTimeout(80);
+  await axe(page,'데스크톱 다크모드 결과 화면');
   check('데스크톱 실행 오류 없음',errors.length===0,{errors});
   await context.close();
 }
 
-async function mobile(browser){
-  const context=await browser.newContext({viewport:{width:390,height:844}});
+async function mobile(browser,width,height){
+  const label=`모바일-${width}`;
+  const context=await browser.newContext({viewport:{width,height}});
   const page=await context.newPage();
   const errors=[];
   page.on('console',message=>{if(message.type()==='error') errors.push(message.text());});
@@ -99,27 +110,28 @@ async function mobile(browser){
   }
   await page.waitForFunction(()=>Number((document.querySelector('#countFollowing')?.textContent||'').replace(/\D/g,''))===13,null,{timeout:15000});
 
-  check('모바일 상단바 표시',await page.locator('.mobileTopV8').isVisible().catch(()=>false),{});
-  check('모바일 하단 내비 표시',await page.locator('.bottomNavV8').isVisible().catch(()=>false),{});
-  check('모바일 카드 결과 표시',await page.locator('.mobileList').isVisible().catch(()=>false),{});
-  check('데스크톱 표 모바일 숨김',await page.locator('.tableWrap').isHidden().catch(()=>false),{});
+  check(`${label} 상단바 표시`,await page.locator('.mobileTopV8').isVisible().catch(()=>false),{});
+  check(`${label} 하단 내비 표시`,await page.locator('.bottomNavV8').isVisible().catch(()=>false),{});
+  check(`${label} 카드 결과 표시`,await page.locator('.mobileList').isVisible().catch(()=>false),{});
+  check(`${label} 데스크톱 표 숨김`,await page.locator('.tableWrap').isHidden().catch(()=>false),{});
   const toggle=page.locator('.mobileFilterToggle');
-  check('모바일 필터 버튼 표시',await toggle.isVisible().catch(()=>false),{});
+  check(`${label} 필터 버튼 표시`,await toggle.isVisible().catch(()=>false),{});
   if(await toggle.isVisible().catch(()=>false)){
     await toggle.click();
-    check('모바일 필터 펼치기',await toggle.getAttribute('aria-expanded')==='true',{expanded:await toggle.getAttribute('aria-expanded')});
+    check(`${label} 필터 펼치기`,await toggle.getAttribute('aria-expanded')==='true',{expanded:await toggle.getAttribute('aria-expanded')});
   }
   const overflow=await page.evaluate(()=>Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)>innerWidth+2);
-  check('모바일 가로 넘침 없음',!overflow,{overflow,width:390,scrollWidth:await page.evaluate(()=>document.documentElement.scrollWidth)});
-  await axe(page,'모바일 결과 화면');
-  check('모바일 실행 오류 없음',errors.length===0,{errors});
+  check(`${label} 가로 넘침 없음`,!overflow,{overflow,width,scrollWidth:await page.evaluate(()=>document.documentElement.scrollWidth)});
+  await axe(page,`${label} 결과 화면`);
+  check(`${label} 실행 오류 없음`,errors.length===0,{errors});
   await context.close();
 }
 
 const browser=await chromium.launch({headless:true});
 try{
   await desktop(browser);
-  await mobile(browser);
+  await mobile(browser,390,844);
+  await mobile(browser,320,568);
 }finally{
   await browser.close();
 }
